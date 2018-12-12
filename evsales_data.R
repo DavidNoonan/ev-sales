@@ -123,12 +123,12 @@ fuel <- read_csv("fuel.csv") %>% mutate(
 )
 
 # check if any model is missing fuel type
-missing_fuel <- ev_data %>% anti_join(y = fuel, by = "Model") # should be empty
+#missing_fuel <- ev_data %>% anti_join(y = fuel, by = "Model") # should be empty
 
 # export csv of models missing fuel
-other_models <- unique(other_fuels$Model) %>%
-  as.tibble() %>%
-  write_csv(path = file.path(getwd(), "remaining_fuel.csv"))
+# other_models <- unique(other_fuels$Model) %>%
+#   as.tibble() %>%
+#   write_csv(path = file.path(getwd(), "remaining_fuel.csv"))
 
 # add fuel type, and brand/model name columns
 ev_data <- ev_data_homogenized_model_names %>%

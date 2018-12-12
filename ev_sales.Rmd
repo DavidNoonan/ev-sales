@@ -3,17 +3,86 @@ title: "EV_sales"
 output: html_document
 ---
 
-Inspired by a recent video I found linked to an electric vehicles forum, [Now You Know](https://www.youtube.com/watch?v=aUC6lsLr04I&feature=youtu.be), predicting an exponential rise in electric vehicle sales (and subsequent downfall of the internal combustion engine), I wanted to see some of the data myself. [We'll begin by delving into data from Inside EV's monthly plug-in sales scorecard.](https://insideevs.com/monthly-plug-in-sales-scorecard/) A tabulation of electric vehicle sales in the US. Their methodology for estimating sales is found [here.](https://insideevs.com/insideevs-handle-sales-estimates-methodology/) It's a mix of official numbers given by manufacturers, and estimates where actual numbers aren't available. For example, Ford, Nissan, and Toyota give make their sales data public, whereas BMW and Mercedes give total number of sales, but don't reveal which of them are battery electric vehicles (EVs) or plug-in hybrid electric vehicles (PHEVs) or other types such as fuel cell electric vehicles (FCEVs), so those numbers are estimated. Keeping that in mind, let's move on to preparing the data.
+Inspired by a recent video I found linked to an electric vehicles forum, [Now You Know](https://www.youtube.com/watch?v=aUC6lsLr04I&feature=youtu.be), predicting an exponential rise in electric vehicle sales (and subsequent downfall of the internal combustion engine), I wanted to see some of the data myself. [We'll begin by delving into data from Inside EV's monthly plug-in sales scorecard.](https://insideevs.com/monthly-plug-in-sales-scorecard/) A tabulation of electric vehicle sales in the US. Their methodology for estimating sales is found [here.](https://insideevs.com/insideevs-handle-sales-estimates-methodology/) It's a mix of official numbers given by manufacturers, and estimates where actual numbers aren't available. For example, Ford, Nissan, and Toyota give make their sales data public, whereas BMW and Mercedes give total number of sales, but don't reveal which of them are battery electric vehicles (BEVs) or plug-in hybrid electric vehicles (PHEVs) or other types such as fuel cell electric vehicles (FCEVs), so those numbers are estimated. Keeping that in mind, let's move on to preparing the data.
 
-Obtaining the data was a bit of a challenge, because the data were posted in different formats over the years as the Inside EV's sales scorecard program has changed. The data have multiple formats on the website, including tables written in html, and data available only as .png images. For the images, we'll extract the data either manually or using the tesseract package[^1], with subsequent cleaning.
+Obtaining the data was a bit of a challenge, because the data were posted in different formats over the years as the Inside EV's sales scorecard program has changed. The data are presented as tables in some cases, but some are only available as .png images. For the images, I extracted the data either manually or using the tesseract package[^1], with subsequent cleaning.
+
+Let's do some basic exlporation. Here's a plot of the sales data from Jan 2012 to Nov 2018, split by BEVs and PHEVs:
 
 
-```{r include=FALSE}
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+
+# relevant packages
 library(tidyverse)
 library(tesseract)
 library(lubridate)
+library(ggthemes)
 
+
+# load data from csv
 ev_data <- readr::read_csv("evsales_data.csv")
 ```
+```{r echo=FALSE, fig.height=6, fig.width=8.5, message=FALSE, warning=FALSE, paged.print=FALSE}
+# line plot function
+ev_plot_line <- function(data, group, plot_title = "Title") {
+  group <- rlang::enquo(group)
+
+  output_df <- data %>%
+    dplyr::group_by(!!group, Date) %>%
+    dplyr::summarize(Total_Sales = sum(Sales)) %>%
+    ggplot(aes(x = Date, y = Total_Sales)) +
+    geom_line(aes(color = !!group)) +
+    labs(y = "Total Sales", title = plot_title)
+
+  return(output_df)
+}
+
+
+ev_data %>% ev_plot_line(Fuel,
+                         plot_title = "Total Electric and Plug-In Hybrid Sales in the U.S.") #+
+#+ scale_color_brewer(palette = 4)
+```
+
+We see a general upward trend in both battery electric and plug-in vehicles. Interestingly, the battery electric sales appear to be increasing exponentially. Sales in 2018 have been especially strong. Are there standout models represented in this jump?
+
+```{r echo=FALSE, message=FALSE, warning=FALSE, paged.print=FALSE}
+most_popular_2018 <- ev_data %>%
+  filter(Year > 2017, Fuel == "BEV") %>%
+  group_by(Brand) %>%
+  summarize(Total_Sales = sum(Sales)) %>%
+  arrange(desc(Total_Sales))
+
+# table of most sales in 2018
+most_popular_2018 %>% knitr::kable(format = "pandoc")
+```
+
+It looks like Tesla is having the greatest breakthrough in 2018. Let's look at Tesla alone:
+
+```{r echo=FALSE, message=FALSE, warning=FALSE, paged.print=FALSE}
+ev_data %>% filter(Year > 2016, Fuel == "BEV", Brand == "Tesla") %>% 
+  ev_plot_line(group = Model, plot_title = "Tesla Sales in the U.S. 2017-2018")
+```
+
+Tesla model 3 sales apparently exploded in 2018, whereas the other models have been relatively flat. Let's look at the next closest brands in this time period:
+
+```{r}
+ev_data %>%
+  filter(Year > 2016, Fuel == "BEV", Brand %in% c("Nissan", "Chevrolet")) %>%
+  ev_plot_line(group = Model, plot_title = "Nissan and Chevrolet BEV Sales in the U.S. 2017-2018")
+```
+
+Leaf sales appear to be flat, whereas The Bolt seems to be experiencing turbulence.  Perhaps this has something to do with the increasing availability of the Tesla model 3? Or manufacturing bottlenecks? Perhaps that is something to look into.
+
+In any case, the growth of BEV sales appears to have been increasing even before the release of the Model 3.
+
+```{r}
+ev_data %>%
+  filter(Year < 2017,
+         Fuel == "BEV",
+         Brand %in% c("Nissan", "Chevrolet", "Tesla")) %>%
+  ev_plot_line(group = Model,
+               plot_title = "Chevrolet, Nissan, and Tesla BEV Sales in the U.S. 2012-2016")
+```
+
 
 [^1]: https://cran.r-project.org/web/packages/tesseract/index.html
