@@ -3,11 +3,11 @@ title: "EV_sales"
 output: html_document
 ---
 
-Inspired by a recent video I found linked to an electric vehicles forum, [Now You Know](https://www.youtube.com/watch?v=aUC6lsLr04I&feature=youtu.be), predicting an exponential rise in electric vehicle sales (and subsequent downfall of the internal combustion engine), I wanted to see some of the data myself. [We'll begin by delving into data from Inside EV's monthly plug-in sales scorecard.](https://insideevs.com/monthly-plug-in-sales-scorecard/) A tabulation of electric vehicle sales in the US. Their methodology for estimating sales is found [here.](https://insideevs.com/insideevs-handle-sales-estimates-methodology/) It's a mix of official numbers given by manufacturers, and estimates where actual numbers aren't available. For example, Ford, Nissan, and Toyota give make their sales data public, whereas BMW and Mercedes give total number of sales, but don't reveal which of them are battery electric vehicles (BEVs) or plug-in hybrid electric vehicles (PHEVs) or other types such as fuel cell electric vehicles (FCEVs), so those numbers are estimated. Keeping that in mind, let's move on to preparing the data.
+Inspired by a recent video I found linked to an electric vehicles forum, [Now You Know](https://www.youtube.com/watch?v=aUC6lsLr04I&feature=youtu.be), predicting an exponential rise in electric vehicle sales (and subsequent downfall of the internal combustion engine), I wanted to see some of the data myself. We'll begin by delving into data from [Inside EV's monthly plug-in sales scorecard.](https://insideevs.com/monthly-plug-in-sales-scorecard/) A tabulation of electric vehicle sales in the US. Their methodology for estimating sales is found [here.](https://insideevs.com/insideevs-handle-sales-estimates-methodology/) It's a mix of official numbers given by manufacturers, and estimates where actual numbers aren't available. For example, Ford, Nissan, and Toyota give make their sales data public, whereas BMW and Mercedes give total number of sales, but don't reveal which of them are battery electric vehicles (BEVs) or plug-in hybrid electric vehicles (PHEVs) or other types such as fuel cell electric vehicles (FCEVs), so those numbers are estimated.
 
 Obtaining the data was a bit of a challenge, because the data were posted in different formats over the years as the Inside EV's sales scorecard program has changed. The data are presented as tables in some cases, but some are only available as .png images. For the images, I extracted the data either manually or using the tesseract package[^1], with subsequent cleaning.
 
-Let's do some basic exlporation. Here's a plot of the sales data from Jan 2012 to Nov 2018, split by BEVs and PHEVs:
+Let's look at the data. Here's a plot of the sales data from Jan 2012 to Nov 2018, split by BEVs and PHEVs:
 
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE}
@@ -17,6 +17,7 @@ library(tidyverse)
 library(tesseract)
 library(lubridate)
 library(ggthemes)
+library(kableExtra)
 
 
 # load data from csv
@@ -31,7 +32,9 @@ ev_plot_line <- function(data, group, plot_title = "Title") {
     dplyr::group_by(!!group, Date) %>%
     dplyr::summarize(Total_Sales = sum(Sales)) %>%
     ggplot(aes(x = Date, y = Total_Sales)) +
-    geom_line(aes(color = !!group)) +
+    geom_line(aes(color = !!group), size = .9, alpha = .5) +
+    geom_line(aes(color = !!group), size = 1.1, alpha = .3) +
+    geom_line(aes(color = !!group), size = 1.25, alpha = .1) +
     labs(y = "Total Sales", title = plot_title)
 
   return(output_df)
@@ -45,7 +48,7 @@ ev_data %>% ev_plot_line(Fuel,
 
 We see a general upward trend in both battery electric and plug-in vehicles. Interestingly, the battery electric sales appear to be increasing exponentially. Sales in 2018 have been especially strong. Are there standout models represented in this jump?
 
-```{r echo=FALSE, message=FALSE, warning=FALSE, paged.print=FALSE}
+```{r echo=FALSE, fig.height=5, fig.width=3, message=FALSE, warning=FALSE, paged.print=FALSE}
 most_popular_2018 <- ev_data %>%
   filter(Year > 2017, Fuel == "BEV") %>%
   group_by(Brand) %>%
@@ -53,7 +56,12 @@ most_popular_2018 <- ev_data %>%
   arrange(desc(Total_Sales))
 
 # table of most sales in 2018
-most_popular_2018 %>% knitr::kable(format = "pandoc")
+most_popular_2018 %>%
+  mutate(Total_Sales = cell_spec(
+    Total_Sales, color = "white", bold = T,
+    background = spec_color(1:12, end = 0.9, option = "C", direction = -1)
+  )) %>% rename("Total Sales" = Total_Sales) %>% kable(caption = "EV Sales in 2018",escape = F, align = "c") %>%
+  kable_styling(c("striped"), full_width = F)
 ```
 
 It looks like Tesla is having the greatest breakthrough in 2018. Let's look at Tesla alone:
@@ -71,7 +79,7 @@ ev_data %>%
   ev_plot_line(group = Model, plot_title = "Nissan and Chevrolet BEV Sales in the U.S. 2017-2018")
 ```
 
-Leaf sales appear to be flat, whereas The Bolt seems to be experiencing turbulence.  Perhaps this has something to do with the increasing availability of the Tesla model 3? Or manufacturing bottlenecks? Perhaps that is something to look into.
+Leaf sales appear to be relatively flat, whereas The Bolt seems to have had a crash in sales in 2018. This is attributed primarily to manufacturing bottlenecks, rather than a lack of demand.[^2] The Chevy bolt is more popular than was expected, and in response, Chevrolet is ramping up production.[^3]
 
 In any case, the growth of BEV sales appears to have been increasing even before the release of the Model 3.
 
@@ -84,5 +92,27 @@ ev_data %>%
                plot_title = "Chevrolet, Nissan, and Tesla BEV Sales in the U.S. 2012-2016")
 ```
 
+So what does the future hold? Maybe we have enough data to make a forecast of sales. We could apply the Bass Diffusion Model[^4], which is commonly used to model the adoption of a new product in a population. It models the spread of the new product throught the market until it reaches its ultimate potential, a constant number denoted $m$. The model is based ont he following differential equation:
+
+$$\frac{f(t)}{1 - F(t)} = p + qF(t)$$
+The installed base fraction $F(t)$ is the fraction of potential units of a product currently in use at time $t$. Its derivative $f(t)$ is the fraction of potential adopters that has adopted the product at time $t$. $p$ is the parameter of innovation, representing the effect of pioneering adopters who begin the adoption process in a population. $q$ is the parameter of imitation, which represents the effect of adopters influenced by the fraction of adopters at a given time.
+
+
+Sales $S(t)$ is the rate of adoption of the new product at time t, given by
+
+$$S(t) = m\frac{(p + q)^2}{p}\frac{e^{-(p + q)^t}}{(1 + \frac{q}{p}e^{-(p + q)^t})^2}$$
+The time of peak sales is its maximum, at:
+$$\frac{ln(q) - ln(p)}{p + q}$$
+
+Here we'll fit the model using the nonlinear least squares function in R. We'll use only BEVs, and aggregate sales among all brands.
+
+```{r}
+bev_sales <- ev_data %>% filter(Fuel == "BEV") %>% group_by(Date) %>% summarize(Total_Sales = sum(Sales)) %>% mutate(Time = 1:nrow(bev_sales))
+```
+
+
 
 [^1]: https://cran.r-project.org/web/packages/tesseract/index.html
+[^2]: https://electrek.co/2018/10/03/chevy-bolt-ev-sales-slumping-us/
+[^3]: https://www.greencarreports.com/news/1118643_gm-to-expand-chevy-bolt-ev-sales-bring-battery-production-to-u-s
+[^4]: http://www.bassbasement.org/F/N/FMB/Pubs/Bass%201969%20New%20Prod%20Growth%20Model.pdf
