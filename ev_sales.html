@@ -125,7 +125,172 @@ $(document).ready(function () {
 </div>
 
 
-<p>Inspired by a recent video on <a href="https://www.youtube.com/watch?v=aUC6lsLr04I&amp;feature=youtu.be">Now You Know</a>, I wanted to take a look at car sales and see some data for myself.</p>
+<p>Inspired by a recent video I found linked to an electric vehicles forum, <a href="https://www.youtube.com/watch?v=aUC6lsLr04I&amp;feature=youtu.be">Now You Know</a>, predicting an exponential rise in electric vehicle sales (and subsequent downfall of the internal combustion engine), I wanted to see some of the data myself. <a href="https://insideevs.com/monthly-plug-in-sales-scorecard/">We’ll begin by delving into data from Inside EV’s monthly plug-in sales scorecard.</a> A tabulation of electric vehicle sales in the US. Their methodology for estimating sales is found <a href="https://insideevs.com/insideevs-handle-sales-estimates-methodology/">here.</a> It’s a mix of official numbers given by manufacturers, and estimates where actual numbers aren’t available. For example, Ford, Nissan, and Toyota give make their sales data public, whereas BMW and Mercedes give total number of sales, but don’t reveal which of them are battery electric vehicles (EVs) or plug-in hybrid electric vehicles (PHEVs) or other types such as fuel cell electric vehicles (FCEVs), so those numbers are estimated. Keeping that in mind, let’s move on to preparing the data.</p>
+<p>Obtaining the data was a bit of a challenge, because the data were posted in different formats over the years as the Inside EV’s sales scorecard program has changed. The data have multiple formats on the website, including tables written in html, and data available only as .png images. For the images, we’ll extract the data either manually or using the tesseract package<a href="#fn1" class="footnoteRef" id="fnref1"><sup>1</sup></a>, with subsequent cleaning.</p>
+<pre class="r"><code>library(tidyverse)
+library(tesseract)
+
+#example of tesseract package usage
+data_2010_raw &lt;- tesseract::ocr_data(image = &quot;2010-2011_sales.png&quot;) %&gt;%
+  select(word) %&gt;%
+  mutate(
+    word = as.character(word),
+    word = str_remove(word, &quot;,&quot;),
+    word = str_to_upper(word)
+  )
+
+# to convert date, use ymd(, truncated = 1)
+data_2010 &lt;- data_2010_raw[[1]] %&gt;%
+  t() %&gt;%
+  matrix(nrow = 4, ncol = 13) %&gt;%
+  t() %&gt;%
+  as.tibble() %&gt;%
+  rename(
+    Month = V1,
+    &quot;Chevrolet Volt&quot; = V2,
+    &quot;Nissan Leaf&quot; = V3,
+    &quot;Mitsubishi iMiEV&quot; = V4
+  ) %&gt;%
+  mutate(Year = as.character(c(2010, rep(2011, 12))),
+         Date = ymd(paste(Year, Month, sep = &quot;-&quot;),truncated = 1)) %&gt;%
+  gather(key = Model, value = Sales, 2:4) %&gt;%
+  select(Model, Month, Sales, Year, Date)
+  
+
+#collect data from csvs
+data_2012 &lt;- read_csv(&quot;sales_2012.csv&quot;) %&gt;% gather(key = Month, value = Sales, 2:13) %&gt;% mutate(Year = 2012,
+                                                                                                    Date = ymd(paste(Year, Month, sep = &quot;-&quot;),truncated = 1))</code></pre>
+<pre><code>## Parsed with column specification:
+## cols(
+##   Model = col_character(),
+##   JAN = col_integer(),
+##   FEB = col_integer(),
+##   MAR = col_integer(),
+##   APR = col_integer(),
+##   MAY = col_integer(),
+##   JUN = col_integer(),
+##   JUL = col_integer(),
+##   AUG = col_integer(),
+##   SEP = col_integer(),
+##   OCT = col_integer(),
+##   NOV = col_integer(),
+##   DEC = col_integer()
+## )</code></pre>
+<pre class="r"><code>data_2013 &lt;- read_csv(&quot;sales_2013.csv&quot;) %&gt;% gather(key = Month, value = Sales, 2:13) %&gt;% mutate(Year = 2013,
+                                                                                                    Date = ymd(paste(Year, Month, sep = &quot;-&quot;),truncated = 1))</code></pre>
+<pre><code>## Parsed with column specification:
+## cols(
+##   Model = col_character(),
+##   JAN = col_integer(),
+##   FEB = col_integer(),
+##   MAR = col_integer(),
+##   APR = col_integer(),
+##   MAY = col_integer(),
+##   JUN = col_integer(),
+##   JUL = col_integer(),
+##   AUG = col_integer(),
+##   SEP = col_integer(),
+##   OCT = col_integer(),
+##   NOV = col_integer(),
+##   DEC = col_integer()
+## )</code></pre>
+<pre class="r"><code>data_2014 &lt;- read_csv(&quot;sales_2014.csv&quot;) %&gt;% gather(key = Month, value = Sales, 2:13) %&gt;% mutate(Year = 2014,
+                                                                                                    Date = ymd(paste(Year, Month, sep = &quot;-&quot;),truncated = 1))</code></pre>
+<pre><code>## Parsed with column specification:
+## cols(
+##   Model = col_character(),
+##   JAN = col_integer(),
+##   FEB = col_integer(),
+##   MAR = col_integer(),
+##   APR = col_integer(),
+##   MAY = col_integer(),
+##   JUN = col_integer(),
+##   JUL = col_integer(),
+##   AUG = col_integer(),
+##   SEP = col_integer(),
+##   OCT = col_integer(),
+##   NOV = col_integer(),
+##   DEC = col_integer()
+## )</code></pre>
+<pre class="r"><code>data_2015 &lt;- read_csv(&quot;sales_2015.csv&quot;) %&gt;% gather(key = Month, value = Sales, 2:13) %&gt;% mutate(Year = 2015,
+                                                                                                    Date = ymd(paste(Year, Month, sep = &quot;-&quot;),truncated = 1))</code></pre>
+<pre><code>## Parsed with column specification:
+## cols(
+##   Model = col_character(),
+##   JAN = col_integer(),
+##   FEB = col_integer(),
+##   MAR = col_integer(),
+##   APR = col_integer(),
+##   MAY = col_integer(),
+##   JUN = col_integer(),
+##   JUL = col_integer(),
+##   AUG = col_integer(),
+##   SEP = col_integer(),
+##   OCT = col_integer(),
+##   NOV = col_integer(),
+##   DEC = col_integer(),
+##   TOTAL = col_integer()
+## )</code></pre>
+<pre class="r"><code>data_2016 &lt;- read_csv(&quot;sales_2016.csv&quot;) %&gt;% gather(key = Month, value = Sales, 2:13) %&gt;% mutate(Year = 2016,
+                                                                                                    Date = ymd(paste(Year, Month, sep = &quot;-&quot;),truncated = 1))</code></pre>
+<pre><code>## Parsed with column specification:
+## cols(
+##   Model = col_character(),
+##   JAN = col_integer(),
+##   FEB = col_integer(),
+##   MAR = col_integer(),
+##   APR = col_integer(),
+##   MAY = col_integer(),
+##   JUN = col_integer(),
+##   JUL = col_integer(),
+##   AUG = col_integer(),
+##   SEP = col_integer(),
+##   OCT = col_integer(),
+##   NOV = col_integer(),
+##   DEC = col_integer(),
+##   TOTAL = col_integer()
+## )</code></pre>
+<pre class="r"><code>data_2017 &lt;- read_csv(&quot;sales_2017.csv&quot;) %&gt;% gather(key = Month, value = Sales, 2:13) %&gt;% mutate(Year = 2017,
+                                                                                                    Date = ymd(paste(Year, Month, sep = &quot;-&quot;),truncated = 1))</code></pre>
+<pre><code>## Parsed with column specification:
+## cols(
+##   Model = col_character(),
+##   JAN = col_integer(),
+##   FEB = col_integer(),
+##   MAR = col_integer(),
+##   APR = col_integer(),
+##   MAY = col_integer(),
+##   JUN = col_integer(),
+##   JUL = col_integer(),
+##   AUG = col_integer(),
+##   SEP = col_integer(),
+##   OCT = col_integer(),
+##   NOV = col_integer(),
+##   DEC = col_integer()
+## )</code></pre>
+<pre class="r"><code>data_2018 &lt;- read_csv(&quot;sales_2018.csv&quot;) %&gt;% gather(key = Month, value = Sales, 2:12) %&gt;% mutate(Year = 2018,
+                                                                                                    Date = ymd(paste(Year, Month, sep = &quot;-&quot;),truncated = 1))</code></pre>
+<pre><code>## Parsed with column specification:
+## cols(
+##   Model = col_character(),
+##   JAN = col_integer(),
+##   FEB = col_integer(),
+##   MAR = col_integer(),
+##   APR = col_integer(),
+##   MAY = col_integer(),
+##   JUN = col_integer(),
+##   JUL = col_integer(),
+##   AUG = col_integer(),
+##   SEP = col_integer(),
+##   OCT = col_integer(),
+##   NOV = col_integer()
+## )</code></pre>
+<div class="footnotes">
+<hr />
+<ol>
+<li id="fn1"><p><a href="https://cran.r-project.org/web/packages/tesseract/index.html" class="uri">https://cran.r-project.org/web/packages/tesseract/index.html</a><a href="#fnref1">↩</a></p></li>
+</ol>
+</div>
 
 
 
