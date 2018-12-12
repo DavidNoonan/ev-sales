@@ -1,0 +1,85 @@
+
+
+
+
+
+```{r}
+library(tidyverse)
+library(dplyr)
+library(lubridate)
+library(styler)
+library(janitor)
+library(ggplot2)
+library(lazyeval)
+```
+
+```{r}
+# From http://www.goodcarbadcar.net/2015/08/total-tesla-motors-sales-figures-usa-canada/
+# modelSsales <- tibble(
+#   Year = unlist(map(as.list(2015:2018), .f = function(x){ rep(x, 12)})),
+#   Sales <- c(
+#   0, 2000, 1200, 1700, 1700, 1700, 1700, 1700, 1700, 1700, 1700, 1845,
+#   2000, 2000, 2000, 2000, 2000, 2000, 2000, 2000, 2000, 2000, 2000, 2000,
+#   1600, 1800, 1800, 2400, 2400, 2400, 2400, 2400, 2400, 2400, 2400, 2400,
+#   2800, 2800, 2800, 1250, 2800, 2800, 1100, 2500, 3750, 1350, 2750, 0
+# ),
+#   Month = rep(c("Jan", "Feb", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"), 4)
+# )
+```
+
+
+```{r}
+# from https://afdc.energy.gov/data/10567
+# 
+
+
+evsales <- readr::read_csv("evsales.csv")
+
+names(evsales)
+
+evsales2 <- evsales %>%
+  gather(key = Year, value = Sales, -Model, -Type) %>%
+  mutate(
+    Brand = stringr::word(Model, sep = " "),
+    Model = stringr::word(Model, 2, -1, sep = " "),
+    Sales = ifelse(is.na(Sales), 0, Sales),
+    Year = as.numeric(Year)
+    ) %>%
+  filter(is.na(Type) ==  FALSE) %>%
+  select(Model, Brand, Model, Type, everything())
+# 
+# ev_plot_line <- function(d, group){
+#   
+#   group = rlang::enquo(group)
+#   
+#   output_df = d %>% dplyr::group_by(!!group, Year) %>%
+#   
+#     dplyr::summarize(Mean_Sales = mean(Sales)) %>%
+#                ggplot(aes(x = Year, y = Mean_Sales)) +
+#    geom_line(aes(color = !!group))
+#   
+#   return(output_df)
+#               
+# }
+# 
+# 
+# evsales2 %>% ev_plot_line(Type)
+# evsales2 %>% filter(Type != "EV") %>% ev_plot_line(Brand)
+
+
+#evsales3 <- evsales2 %>% group_by(Type,Year) %>% summarize(Mean_Sales = mean(Sales))
+
+# evsales3 %>% ggplot(aes(x = Year, y = Mean_Sales)) +
+#   geom_line(aes(color = Type))
+
+
+#evsales2 %>% group_by(Year, Brand) %>% summarize(Mean_Sales = mean(sales))
+
+# evsales2 %>%
+#   group_by(Type,Year) %>%
+#   summarize(Mean_Sales = mean(Sales))  %>%
+#   ggplot(aes(x = Year, y = Mean_Sales)) +
+#   geom_line(aes(color = Type)) 
+```
+
+
