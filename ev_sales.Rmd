@@ -3,80 +3,57 @@ title: "EV_sales"
 output: html_document
 ---
 
-Inspired by a recent video I found linked to an electric vehicles forum, [Now You Know](https://www.youtube.com/watch?v=aUC6lsLr04I&feature=youtu.be), I wanted to take a look at car sales and see some data for myself.
+Inspired by a recent video I found linked to an electric vehicles forum, [Now You Know](https://www.youtube.com/watch?v=aUC6lsLr04I&feature=youtu.be), predicting an exponential rise in electric vehicle sales (and subsequent downfall of the internal combustion engine), I wanted to see some of the data myself. [We'll begin by delving into data from Inside EV's monthly plug-in sales scorecard.](https://insideevs.com/monthly-plug-in-sales-scorecard/) A tabulation of electric vehicle sales in the US. Their methodology for estimating sales is found [here.](https://insideevs.com/insideevs-handle-sales-estimates-methodology/) It's a mix of official numbers given by manufacturers, and estimates where actual numbers aren't available. For example, Ford, Nissan, and Toyota give make their sales data public, whereas BMW and Mercedes give total number of sales, but don't reveal which of them are battery electric vehicles (EVs) or plug-in hybrid electric vehicles (PHEVs) or other types such as fuel cell electric vehicles (FCEVs), so those numbers are estimated. Keeping that in mind, let's move on to preparing the data.
+
+Obtaining the data was a bit of a challenge, because the data were posted in different formats as the Inside EV's sales scorecard program has changed. The data have multiple formats on the website, including tables written in html, and images. For the images, we'll extract the data either manually or using the tesseract package[^1], with subsequent cleaning.
+
 
 ```{r}
 library(tidyverse)
-library(dplyr)
-library(lubridate)
-library(styler)
-library(janitor)
-library(ggplot2)
-library(lazyeval)
+library(tesseract)
 
-# From http://www.goodcarbadcar.net/2015/08/total-tesla-motors-sales-figures-usa-canada/
-# modelSsales <- tibble(
-#   Year = unlist(map(as.list(2015:2018), .f = function(x){ rep(x, 12)})),
-#   Sales <- c(
-#   0, 2000, 1200, 1700, 1700, 1700, 1700, 1700, 1700, 1700, 1700, 1845,
-#   2000, 2000, 2000, 2000, 2000, 2000, 2000, 2000, 2000, 2000, 2000, 2000,
-#   1600, 1800, 1800, 2400, 2400, 2400, 2400, 2400, 2400, 2400, 2400, 2400,
-#   2800, 2800, 2800, 1250, 2800, 2800, 1100, 2500, 3750, 1350, 2750, 0
-# ),
-#   Month = rep(c("Jan", "Feb", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"), 4)
-# )
-
-
-# from https://afdc.energy.gov/data/10567
-
-evsales <- readr::read_csv("evsales.csv")
-
-names(evsales)
-
-evsales2 <- evsales %>%
-  tidyr::gather(key = Year, value = Sales, -Model, -Type) %>%
+#example of tesseract package usage
+data_2010_raw <- tesseract::ocr_data(image = "2010-2011_sales.png") %>%
+  select(word) %>%
   mutate(
-    Brand = stringr::word(Model, sep = " "),
-    Model = stringr::word(Model, 2, -1, sep = " "),
-    Sales = ifelse(is.na(Sales), 0, Sales),
-    Year = as.numeric(Year)
-    ) %>%
-  filter(is.na(Type) ==  FALSE) %>%
-  select(Model, Brand, Model, Type, everything())
+    word = as.character(word),
+    word = str_remove(word, ","),
+    word = str_to_upper(word)
+  )
 
-ev_plot_line <- function(d, group){
+# to convert date, use ymd(, truncated = 1)
+data_2010 <- data_2010_raw[[1]] %>%
+  t() %>%
+  matrix(nrow = 4, ncol = 13) %>%
+  t() %>%
+  as.tibble() %>%
+  rename(
+    Month = V1,
+    "Chevrolet Volt" = V2,
+    "Nissan Leaf" = V3,
+    "Mitsubishi iMiEV" = V4
+  ) %>%
+  mutate(Year = as.character(c(2010, rep(2011, 12))),
+         Date = ymd(paste(Year, Month, sep = "-"),truncated = 1)) %>%
+  gather(key = Model, value = Sales, 2:4) %>%
+  select(Model, Month, Sales, Year, Date)
   
-  group = enquo(group)
-  
-  output_df = d %>% group_by(!!group, Year) %>%
-  
-    summarize(Mean_Sales = mean(Sales)) %>%
-               ggplot(aes(x = Year, y = Mean_Sales)) +
-   geom_line(aes(color = !!group))
-  
-  return(output_df)
-              
-}
 
-
-evsales2 %>% ev_plot_line(Type)
-evsales2 %>% filter(Type != "EV") %>% ev_plot_line(Brand)
-
-what
-
-#evsales3 <- evsales2 %>% group_by(Type,Year) %>% summarize(Mean_Sales = mean(Sales))
-
-# evsales3 %>% ggplot(aes(x = Year, y = Mean_Sales)) +
-#   geom_line(aes(color = Type))
-
-
-#evsales2 %>% group_by(Year, Brand) %>% summarize(Mean_Sales = mean(sales))
-
-# evsales2 %>%
-#   group_by(Type,Year) %>%
-#   summarize(Mean_Sales = mean(Sales))  %>%
-#   ggplot(aes(x = Year, y = Mean_Sales)) +
-#   geom_line(aes(color = Type)) 
-
+#collect data from csvs
+data_2012 <- read_csv("sales_2012.csv") %>% gather(key = Month, value = Sales, 2:13) %>% mutate(Year = 2012,
+                                                                                                    Date = ymd(paste(Year, Month, sep = "-"),truncated = 1))
+data_2013 <- read_csv("sales_2013.csv") %>% gather(key = Month, value = Sales, 2:13) %>% mutate(Year = 2013,
+                                                                                                    Date = ymd(paste(Year, Month, sep = "-"),truncated = 1))
+data_2014 <- read_csv("sales_2014.csv") %>% gather(key = Month, value = Sales, 2:13) %>% mutate(Year = 2014,
+                                                                                                    Date = ymd(paste(Year, Month, sep = "-"),truncated = 1))
+data_2015 <- read_csv("sales_2015.csv") %>% gather(key = Month, value = Sales, 2:13) %>% mutate(Year = 2015,
+                                                                                                    Date = ymd(paste(Year, Month, sep = "-"),truncated = 1))
+data_2016 <- read_csv("sales_2016.csv") %>% gather(key = Month, value = Sales, 2:13) %>% mutate(Year = 2016,
+                                                                                                    Date = ymd(paste(Year, Month, sep = "-"),truncated = 1))
+data_2017 <- read_csv("sales_2017.csv") %>% gather(key = Month, value = Sales, 2:13) %>% mutate(Year = 2017,
+                                                                                                    Date = ymd(paste(Year, Month, sep = "-"),truncated = 1))
+data_2018 <- read_csv("sales_2018.csv") %>% gather(key = Month, value = Sales, 2:12) %>% mutate(Year = 2018,
+                                                                                                    Date = ymd(paste(Year, Month, sep = "-"),truncated = 1))
 ```
 
+[^1]: https://cran.r-project.org/web/packages/tesseract/index.html
