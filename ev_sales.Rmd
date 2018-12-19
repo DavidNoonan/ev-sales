@@ -3,7 +3,7 @@ title: "EV_sales"
 output: html_document
 ---
 
-Inspired by a recent video I found linked to an electric vehicles forum, [Now You Know](https://www.youtube.com/watch?v=aUC6lsLr04I&feature=youtu.be), predicting an exponential rise in electric vehicle sales (and subsequent downfall of the internal combustion engine), I wanted to see some of the data myself. We'll begin by delving into data from [Inside EV's monthly plug-in sales scorecard.](https://insideevs.com/monthly-plug-in-sales-scorecard/) A tabulation of electric vehicle sales in the US. Their methodology for estimating sales is found [here.](https://insideevs.com/insideevs-handle-sales-estimates-methodology/) It's a mix of official numbers given by manufacturers, and estimates where actual numbers aren't available. For example, Ford, Nissan, and Toyota give make their sales data public, whereas BMW and Mercedes give total number of sales, but don't reveal which of them are battery electric vehicles (BEVs) or plug-in hybrid electric vehicles (PHEVs) or other types such as fuel cell electric vehicles (FCEVs), so those numbers are estimated.
+There's been some speculation about the course of electric vehicle sales. [One take](https://www.youtube.com/watch?v=aUC6lsLr04I&feature=youtu.be), predicts an exponential rise in electric vehicle sales, and subsequent downfall of the internal combustion engine, all within the next decade. I wanted to see some of the data myself. We'll begin by delving into data from [Inside EV's monthly plug-in sales scorecard.](https://insideevs.com/monthly-plug-in-sales-scorecard/) A tabulation of electric vehicle sales in the US. Their methodology for estimating sales is found [here.](https://insideevs.com/insideevs-handle-sales-estimates-methodology/) It's a mix of official numbers given by manufacturers, and estimates where actual numbers aren't available. For example, Ford, Nissan, and Toyota give make their sales data public, whereas BMW and Mercedes give total number of sales, but don't reveal which of them are battery electric vehicles (BEVs) or plug-in hybrid electric vehicles (PHEVs) or other types such as fuel cell electric vehicles (FCEVs), so those numbers are estimated.
 
 Obtaining the data was a bit of a challenge, because the data were posted in different formats over the years as the Inside EV's sales scorecard program has changed. The data are presented as tables in some cases, but some are only available as .png images. For the images, I extracted the data either manually or using the tesseract package[^1], with subsequent cleaning.
 
@@ -14,10 +14,10 @@ Let's look at the data. Here's a plot of the sales data from Jan 2012 to Nov 201
 
 # relevant packages
 library(tidyverse)
-library(tesseract)
 library(lubridate)
 library(ggthemes)
 library(kableExtra)
+library(GA)
 
 
 # load data from csv
@@ -73,17 +73,17 @@ ev_data %>% filter(Year > 2016, Fuel == "BEV", Brand == "Tesla") %>%
 
 Tesla model 3 sales apparently exploded in 2018, whereas the other models have been relatively flat. Let's look at the next closest brands in this time period:
 
-```{r}
+```{r echo=FALSE}
 ev_data %>%
-  filter(Year > 2016, Fuel == "BEV", Brand %in% c("Nissan", "Chevrolet")) %>%
-  ev_plot_line(group = Model, plot_title = "Nissan and Chevrolet BEV Sales in the U.S. 2017-2018")
+  filter(Year > 2015, Fuel == "BEV", Brand %in% c("Nissan", "Chevrolet")) %>%
+  ev_plot_line(group = Model, plot_title = "Nissan and Chevrolet BEV Sales in the U.S. 2016-2018")
 ```
 
 Leaf sales appear to be relatively flat, whereas The Bolt seems to have had a crash in sales in 2018. This is attributed primarily to manufacturing bottlenecks, rather than a lack of demand.[^2] The Chevy bolt is more popular than was expected, and in response, Chevrolet is ramping up production.[^3]
 
 In any case, the growth of BEV sales appears to have been increasing even before the release of the Model 3.
 
-```{r}
+```{r echo=FALSE}
 ev_data %>%
   filter(Year < 2017,
          Fuel == "BEV",
@@ -98,17 +98,112 @@ $$\frac{f(t)}{1 - F(t)} = p + qF(t)$$
 The installed base fraction $F(t)$ is the fraction of potential units of a product currently in use at time $t$. Its derivative $f(t)$ is the fraction of potential adopters that has adopted the product at time $t$. $p$ is the parameter of innovation, representing the effect of pioneering adopters who begin the adoption process in a population. $q$ is the parameter of imitation, which represents the effect of adopters influenced by the fraction of adopters at a given time.
 
 
-Sales $S(t)$ is the rate of adoption of the new product at time t, given by
+$f(t)$ is the rate of adoption of the new product at time t, given by
 
-$$S(t) = m\frac{(p + q)^2}{p}\frac{e^{-(p + q)^t}}{(1 + \frac{q}{p}e^{-(p + q)^t})^2}$$
-The time of peak sales is its maximum, at:
+$$f(t) = m\frac{(p + q)^2}{p}\frac{e^{-(p + q)t}}{(1 + \frac{q}{p}e^{-(p + q)t})^2}$$
+The time of peak adoptions is its maximum, at:
 $$\frac{ln(q) - ln(p)}{p + q}$$
+The form that is recommended for fitting relates cumulative adoptions:
 
-Here we'll fit the model using the nonlinear least squares function in R. We'll use only BEVs, and aggregate sales among all brands.
+$$F(t) = m\frac{1 -e^{-(p + q)t}}{1 + \frac{q}{p}e^{-(p + q)t}} $$
+
+Let's look at the model visually:
+
+```{r echo=FALSE}
+# Bass Diffusion Model for cumulative adoptions (sales), preferred for fitting
+#theta[1] = m, theta[2] = p, theta[3] = q
+cumul_bass_func <- function(x, theta) {
+  theta[1]*(1 - exp(-(theta[2] + theta[3])*x))/(1 + (theta[3]/theta[2])*exp(-(theta[2] + theta[3])*x))
+}
+
+# Generate curves
+set.seed(0192)
+
+# Arbitrarily selected parameters
+my_theta <- c(10000,0.03, 0.38)
+
+cumul_bass_func_sim <- function(x){
+  cumul_bass_func(x, my_theta)}
+
+by_num <- 1
+
+fake_time <- seq(1, 20, by = by_num)
+
+# Assemble fake data
+fake_bass_data <- tibble(Time = fake_time,
+                         Cumulative_Sales = cumul_bass_func_sim(fake_time)) %>%
+  mutate(Total_Adoption = diff(c(0,Cumulative_Sales)),
+         Total_Adoption   = ifelse(Time == by_num, Cumulative_Sales, Total_Adoption),
+         Innovators   = my_theta[2]*(my_theta[1] - Cumulative_Sales),
+         Imitators    = ifelse(Total_Adoption - Innovators > 0, Total_Adoption - Innovators, 0))
+
+fake_bass_data %>%
+  gather(key = Type, value = Adoption, -Time, -Cumulative_Sales) %>%
+  ggplot(aes(x = Time, y = Adoption)) +
+  geom_line(aes(color = Type),size =0.80, alpha =0.5) +
+  geom_line(aes(color = Type),size =1.00, alpha =0.3) +
+  geom_line(aes(color = Type),size =1.15, alpha =0.1) +
+  labs(title = "Bass Diffusion Curve: Sales over Time")
+```
+
+The graph above shows the increase in adoption 
 
 ```{r}
-bev_sales <- ev_data %>% filter(Fuel == "BEV") %>% group_by(Date) %>% summarize(Total_Sales = sum(Sales)) %>% mutate(Time = 1:nrow(bev_sales))
+fake_bass_data %>% mutate(Innovators = cumsum(Innovators),
+                          Imitators = cumsum(Imitators)) %>%
+  gather(key = Type, value = Sales, -Time, -Total_Adoption) %>% 
+  ggplot(aes(x = Time, y = Sales)) +
+  geom_line(aes(color = Type),size =0.80, alpha =0.5) +
+  geom_line(aes(color = Type),size =1.00, alpha =0.3) +
+  geom_line(aes(color = Type),size =1.15, alpha =0.1) +
+  labs(title = "Bass Diffusion Curve: Cumulative Sales over Time")
 ```
+
+
+
+```{r include=FALSE}
+# Generate curves
+nmonths <- length(unique(ev_data$Date))
+bev_monthly_sales <- ev_data %>%
+  filter(Fuel == "BEV") %>%
+  group_by(Date) %>%
+  summarize(Total_Sales = sum(Sales)) %>%
+  mutate(Time = 1:nmonths,
+         Total_Sales = as.numeric(Total_Sales),
+         Cumulative_Sales = cumsum(Total_Sales), 
+         year_period = sort(rep(1:8, 12)))
+
+bev_yearly_sales <- bev_monthly_sales %>%
+  group_by(year_period) %>%
+  summarize(Total_Sales = sum(Total_Sales)) %>%
+  mutate(Total_Sales = as.numeric(Total_Sales),
+         Cumulative_Sales = cumsum(Total_Sales),
+         Time = 1:8)
+
+bass_formula <- Total_Sales ~ m * (((p + q)^2 / p) * exp(-(p + q) * Time)) / (1 +
+  (q / p) * exp(-(p + q) * Time))^2
+
+bass_cumulative_formula <- Cumulative_Sales ~ m*(1 - exp(-(p + q)*Time))/(1 + (q/p)*exp(-(p + q)*Time))
+
+# Estimated number of active cars in the USA 2018
+est.num.cars.us <- 121484000
+
+
+
+
+nlstools::preview(formula = bass_cumulative_formula, data = bev_yearly_sales,start = list(m = est.num.cars.us, p = 0.000065, q = 0.42))
+
+nlstools::preview(formula = bass_cumulative_formula, data = bev_yearly_sales,start = list(m = est.num.cars.us, p = 0.00003, q = 0.60))
+#attempt to fit with NLS
+# bass_nls_fit <-  nls(data = bev_yearly_sales, formula = bass_cumulative_formula,
+#       start = list(m=est.num.cars.us, p=0.000065, q=0.42), control =  nls.control(maxiter = 1000000, tol = 1e-05, minFactor = .0000001,
+#             printEval = FALSE, warnOnly = FALSE))
+# summary(bass_nls_fit)
+```
+
+
+
+
 
 
 
@@ -116,3 +211,5 @@ bev_sales <- ev_data %>% filter(Fuel == "BEV") %>% group_by(Date) %>% summarize(
 [^2]: https://electrek.co/2018/10/03/chevy-bolt-ev-sales-slumping-us/
 [^3]: https://www.greencarreports.com/news/1118643_gm-to-expand-chevy-bolt-ev-sales-bring-battery-production-to-u-s
 [^4]: http://www.bassbasement.org/F/N/FMB/Pubs/Bass%201969%20New%20Prod%20Growth%20Model.pdf
+
+

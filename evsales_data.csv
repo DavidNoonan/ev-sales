@@ -1,4 +1,43 @@
 Brand,Model,Name,Fuel,Year,Month,Date,Sales
+Chevrolet,Volt,Chevrolet Volt,PHEV,2010,DEC,2010-12-01,326
+Chevrolet,Volt,Chevrolet Volt,PHEV,2011,JAN,2011-01-01,321
+Chevrolet,Volt,Chevrolet Volt,PHEV,2011,FEB,2011-02-01,281
+Chevrolet,Volt,Chevrolet Volt,PHEV,2011,MAR,2011-03-01,608
+Chevrolet,Volt,Chevrolet Volt,PHEV,2011,APR,2011-04-01,493
+Chevrolet,Volt,Chevrolet Volt,PHEV,2011,MAY,2011-05-01,481
+Chevrolet,Volt,Chevrolet Volt,PHEV,2011,JUN,2011-06-01,561
+Chevrolet,Volt,Chevrolet Volt,PHEV,2011,JUL,2011-07-01,125
+Chevrolet,Volt,Chevrolet Volt,PHEV,2011,AUG,2011-08-01,302
+Chevrolet,Volt,Chevrolet Volt,PHEV,2011,SEP,2011-09-01,723
+Chevrolet,Volt,Chevrolet Volt,PHEV,2011,OCT,2011-10-01,1108
+Chevrolet,Volt,Chevrolet Volt,PHEV,2011,NOV,2011-11-01,1139
+Chevrolet,Volt,Chevrolet Volt,PHEV,2011,DEC,2011-12-01,1529
+Nissan,LEAF,Nissan LEAF,BEV,2010,DEC,2010-12-01,19
+Nissan,LEAF,Nissan LEAF,BEV,2011,JAN,2011-01-01,87
+Nissan,LEAF,Nissan LEAF,BEV,2011,FEB,2011-02-01,67
+Nissan,LEAF,Nissan LEAF,BEV,2011,MAR,2011-03-01,298
+Nissan,LEAF,Nissan LEAF,BEV,2011,APR,2011-04-01,573
+Nissan,LEAF,Nissan LEAF,BEV,2011,MAY,2011-05-01,1142
+Nissan,LEAF,Nissan LEAF,BEV,2011,JUN,2011-06-01,1708
+Nissan,LEAF,Nissan LEAF,BEV,2011,JUL,2011-07-01,931
+Nissan,LEAF,Nissan LEAF,BEV,2011,AUG,2011-08-01,1362
+Nissan,LEAF,Nissan LEAF,BEV,2011,SEP,2011-09-01,1031
+Nissan,LEAF,Nissan LEAF,BEV,2011,OCT,2011-10-01,849
+Nissan,LEAF,Nissan LEAF,BEV,2011,NOV,2011-11-01,672
+Nissan,LEAF,Nissan LEAF,BEV,2011,DEC,2011-12-01,954
+Mitsubishi,i-MiEV,Mitsubishi i-MiEV,BEV,2010,DEC,2010-12-01,0
+Mitsubishi,i-MiEV,Mitsubishi i-MiEV,BEV,2011,JAN,2011-01-01,0
+Mitsubishi,i-MiEV,Mitsubishi i-MiEV,BEV,2011,FEB,2011-02-01,0
+Mitsubishi,i-MiEV,Mitsubishi i-MiEV,BEV,2011,MAR,2011-03-01,0
+Mitsubishi,i-MiEV,Mitsubishi i-MiEV,BEV,2011,APR,2011-04-01,0
+Mitsubishi,i-MiEV,Mitsubishi i-MiEV,BEV,2011,MAY,2011-05-01,0
+Mitsubishi,i-MiEV,Mitsubishi i-MiEV,BEV,2011,JUN,2011-06-01,0
+Mitsubishi,i-MiEV,Mitsubishi i-MiEV,BEV,2011,JUL,2011-07-01,0
+Mitsubishi,i-MiEV,Mitsubishi i-MiEV,BEV,2011,AUG,2011-08-01,0
+Mitsubishi,i-MiEV,Mitsubishi i-MiEV,BEV,2011,SEP,2011-09-01,0
+Mitsubishi,i-MiEV,Mitsubishi i-MiEV,BEV,2011,OCT,2011-10-01,0
+Mitsubishi,i-MiEV,Mitsubishi i-MiEV,BEV,2011,NOV,2011-11-01,0
+Mitsubishi,i-MiEV,Mitsubishi i-MiEV,BEV,2011,DEC,2011-12-01,80
 Chevrolet,Volt,Chevrolet Volt,PHEV,2012,JAN,2012-01-01,603
 Toyota,Prius PHV,Toyota Prius PHV,PHEV,2012,JAN,2012-01-01,0
 Nissan,LEAF,Nissan LEAF,BEV,2012,JAN,2012-01-01,676
@@ -584,7 +623,7 @@ BMW,X5 xDrive 40e,BMW X5 xDrive 40e,PHEV,2015,JAN,2015-01-01,0
 Porsche,Panamera S-E,Porsche Panamera S-E,PHEV,2015,JAN,2015-01-01,61
 Tesla,Model X,Tesla Model X,BEV,2015,JAN,2015-01-01,0
 Porsche,918 Spyder,Porsche 918 Spyder,PHEV,2015,JAN,2015-01-01,34
-Hyundai,Sonata PHV,Hyundai Sonata PHV,PHEV,2015,JAN,2015-01-01,0
+Hyundai,Sonata PHEV,Hyundai Sonata PHEV,PHEV,2015,JAN,2015-01-01,0
 Mercedes,S550 PHV,Mercedes S550 PHV,PHEV,2015,JAN,2015-01-01,0
 Mitsubishi,i-MiEV,Mitsubishi i-MiEV,BEV,2015,JAN,2015-01-01,3
 Volvo,XC90,Volvo XC90,PHEV,2015,JAN,2015-01-01,0
@@ -612,7 +651,7 @@ BMW,X5 xDrive 40e,BMW X5 xDrive 40e,PHEV,2015,FEB,2015-02-01,0
 Porsche,Panamera S-E,Porsche Panamera S-E,PHEV,2015,FEB,2015-02-01,40
 Tesla,Model X,Tesla Model X,BEV,2015,FEB,2015-02-01,0
 Porsche,918 Spyder,Porsche 918 Spyder,PHEV,2015,FEB,2015-02-01,14
-Hyundai,Sonata PHV,Hyundai Sonata PHV,PHEV,2015,FEB,2015-02-01,0
+Hyundai,Sonata PHEV,Hyundai Sonata PHEV,PHEV,2015,FEB,2015-02-01,0
 Mercedes,S550 PHV,Mercedes S550 PHV,PHEV,2015,FEB,2015-02-01,0
 Mitsubishi,i-MiEV,Mitsubishi i-MiEV,BEV,2015,FEB,2015-02-01,2
 Volvo,XC90,Volvo XC90,PHEV,2015,FEB,2015-02-01,0
@@ -640,7 +679,7 @@ BMW,X5 xDrive 40e,BMW X5 xDrive 40e,PHEV,2015,MAR,2015-03-01,0
 Porsche,Panamera S-E,Porsche Panamera S-E,PHEV,2015,MAR,2015-03-01,44
 Tesla,Model X,Tesla Model X,BEV,2015,MAR,2015-03-01,0
 Porsche,918 Spyder,Porsche 918 Spyder,PHEV,2015,MAR,2015-03-01,10
-Hyundai,Sonata PHV,Hyundai Sonata PHV,PHEV,2015,MAR,2015-03-01,0
+Hyundai,Sonata PHEV,Hyundai Sonata PHEV,PHEV,2015,MAR,2015-03-01,0
 Mercedes,S550 PHV,Mercedes S550 PHV,PHEV,2015,MAR,2015-03-01,0
 Mitsubishi,i-MiEV,Mitsubishi i-MiEV,BEV,2015,MAR,2015-03-01,10
 Volvo,XC90,Volvo XC90,PHEV,2015,MAR,2015-03-01,0
@@ -668,7 +707,7 @@ BMW,X5 xDrive 40e,BMW X5 xDrive 40e,PHEV,2015,APR,2015-04-01,0
 Porsche,Panamera S-E,Porsche Panamera S-E,PHEV,2015,APR,2015-04-01,30
 Tesla,Model X,Tesla Model X,BEV,2015,APR,2015-04-01,0
 Porsche,918 Spyder,Porsche 918 Spyder,PHEV,2015,APR,2015-04-01,28
-Hyundai,Sonata PHV,Hyundai Sonata PHV,PHEV,2015,APR,2015-04-01,0
+Hyundai,Sonata PHEV,Hyundai Sonata PHEV,PHEV,2015,APR,2015-04-01,0
 Mercedes,S550 PHV,Mercedes S550 PHV,PHEV,2015,APR,2015-04-01,0
 Mitsubishi,i-MiEV,Mitsubishi i-MiEV,BEV,2015,APR,2015-04-01,16
 Volvo,XC90,Volvo XC90,PHEV,2015,APR,2015-04-01,0
@@ -696,7 +735,7 @@ BMW,X5 xDrive 40e,BMW X5 xDrive 40e,PHEV,2015,MAY,2015-05-01,0
 Porsche,Panamera S-E,Porsche Panamera S-E,PHEV,2015,MAY,2015-05-01,21
 Tesla,Model X,Tesla Model X,BEV,2015,MAY,2015-05-01,0
 Porsche,918 Spyder,Porsche 918 Spyder,PHEV,2015,MAY,2015-05-01,20
-Hyundai,Sonata PHV,Hyundai Sonata PHV,PHEV,2015,MAY,2015-05-01,0
+Hyundai,Sonata PHEV,Hyundai Sonata PHEV,PHEV,2015,MAY,2015-05-01,0
 Mercedes,S550 PHV,Mercedes S550 PHV,PHEV,2015,MAY,2015-05-01,0
 Mitsubishi,i-MiEV,Mitsubishi i-MiEV,BEV,2015,MAY,2015-05-01,18
 Volvo,XC90,Volvo XC90,PHEV,2015,MAY,2015-05-01,0
@@ -724,7 +763,7 @@ BMW,X5 xDrive 40e,BMW X5 xDrive 40e,PHEV,2015,JUN,2015-06-01,0
 Porsche,Panamera S-E,Porsche Panamera S-E,PHEV,2015,JUN,2015-06-01,34
 Tesla,Model X,Tesla Model X,BEV,2015,JUN,2015-06-01,0
 Porsche,918 Spyder,Porsche 918 Spyder,PHEV,2015,JUN,2015-06-01,29
-Hyundai,Sonata PHV,Hyundai Sonata PHV,PHEV,2015,JUN,2015-06-01,0
+Hyundai,Sonata PHEV,Hyundai Sonata PHEV,PHEV,2015,JUN,2015-06-01,0
 Mercedes,S550 PHV,Mercedes S550 PHV,PHEV,2015,JUN,2015-06-01,0
 Mitsubishi,i-MiEV,Mitsubishi i-MiEV,BEV,2015,JUN,2015-06-01,23
 Volvo,XC90,Volvo XC90,PHEV,2015,JUN,2015-06-01,0
@@ -752,7 +791,7 @@ BMW,X5 xDrive 40e,BMW X5 xDrive 40e,PHEV,2015,JUL,2015-07-01,0
 Porsche,Panamera S-E,Porsche Panamera S-E,PHEV,2015,JUL,2015-07-01,23
 Tesla,Model X,Tesla Model X,BEV,2015,JUL,2015-07-01,0
 Porsche,918 Spyder,Porsche 918 Spyder,PHEV,2015,JUL,2015-07-01,40
-Hyundai,Sonata PHV,Hyundai Sonata PHV,PHEV,2015,JUL,2015-07-01,0
+Hyundai,Sonata PHEV,Hyundai Sonata PHEV,PHEV,2015,JUL,2015-07-01,0
 Mercedes,S550 PHV,Mercedes S550 PHV,PHEV,2015,JUL,2015-07-01,10
 Mitsubishi,i-MiEV,Mitsubishi i-MiEV,BEV,2015,JUL,2015-07-01,12
 Volvo,XC90,Volvo XC90,PHEV,2015,JUL,2015-07-01,0
@@ -780,7 +819,7 @@ BMW,X5 xDrive 40e,BMW X5 xDrive 40e,PHEV,2015,AUG,2015-08-01,0
 Porsche,Panamera S-E,Porsche Panamera S-E,PHEV,2015,AUG,2015-08-01,36
 Tesla,Model X,Tesla Model X,BEV,2015,AUG,2015-08-01,0
 Porsche,918 Spyder,Porsche 918 Spyder,PHEV,2015,AUG,2015-08-01,22
-Hyundai,Sonata PHV,Hyundai Sonata PHV,PHEV,2015,AUG,2015-08-01,0
+Hyundai,Sonata PHEV,Hyundai Sonata PHEV,PHEV,2015,AUG,2015-08-01,0
 Mercedes,S550 PHV,Mercedes S550 PHV,PHEV,2015,AUG,2015-08-01,10
 Mitsubishi,i-MiEV,Mitsubishi i-MiEV,BEV,2015,AUG,2015-08-01,6
 Volvo,XC90,Volvo XC90,PHEV,2015,AUG,2015-08-01,4
@@ -808,7 +847,7 @@ BMW,X5 xDrive 40e,BMW X5 xDrive 40e,PHEV,2015,SEP,2015-09-01,0
 Porsche,Panamera S-E,Porsche Panamera S-E,PHEV,2015,SEP,2015-09-01,41
 Tesla,Model X,Tesla Model X,BEV,2015,SEP,2015-09-01,6
 Porsche,918 Spyder,Porsche 918 Spyder,PHEV,2015,SEP,2015-09-01,4
-Hyundai,Sonata PHV,Hyundai Sonata PHV,PHEV,2015,SEP,2015-09-01,0
+Hyundai,Sonata PHEV,Hyundai Sonata PHEV,PHEV,2015,SEP,2015-09-01,0
 Mercedes,S550 PHV,Mercedes S550 PHV,PHEV,2015,SEP,2015-09-01,17
 Mitsubishi,i-MiEV,Mitsubishi i-MiEV,BEV,2015,SEP,2015-09-01,3
 Volvo,XC90,Volvo XC90,PHEV,2015,SEP,2015-09-01,0
@@ -836,7 +875,7 @@ BMW,X5 xDrive 40e,BMW X5 xDrive 40e,PHEV,2015,OCT,2015-10-01,118
 Porsche,Panamera S-E,Porsche Panamera S-E,PHEV,2015,OCT,2015-10-01,28
 Tesla,Model X,Tesla Model X,BEV,2015,OCT,2015-10-01,4
 Porsche,918 Spyder,Porsche 918 Spyder,PHEV,2015,OCT,2015-10-01,0
-Hyundai,Sonata PHV,Hyundai Sonata PHV,PHEV,2015,OCT,2015-10-01,0
+Hyundai,Sonata PHEV,Hyundai Sonata PHEV,PHEV,2015,OCT,2015-10-01,0
 Mercedes,S550 PHV,Mercedes S550 PHV,PHEV,2015,OCT,2015-10-01,25
 Mitsubishi,i-MiEV,Mitsubishi i-MiEV,BEV,2015,OCT,2015-10-01,9
 Volvo,XC90,Volvo XC90,PHEV,2015,OCT,2015-10-01,1
@@ -864,7 +903,7 @@ BMW,X5 xDrive 40e,BMW X5 xDrive 40e,PHEV,2015,NOV,2015-11-01,167
 Porsche,Panamera S-E,Porsche Panamera S-E,PHEV,2015,NOV,2015-11-01,33
 Tesla,Model X,Tesla Model X,BEV,2015,NOV,2015-11-01,5
 Porsche,918 Spyder,Porsche 918 Spyder,PHEV,2015,NOV,2015-11-01,2
-Hyundai,Sonata PHV,Hyundai Sonata PHV,PHEV,2015,NOV,2015-11-01,15
+Hyundai,Sonata PHEV,Hyundai Sonata PHEV,PHEV,2015,NOV,2015-11-01,15
 Mercedes,S550 PHV,Mercedes S550 PHV,PHEV,2015,NOV,2015-11-01,21
 Mitsubishi,i-MiEV,Mitsubishi i-MiEV,BEV,2015,NOV,2015-11-01,4
 Volvo,XC90,Volvo XC90,PHEV,2015,NOV,2015-11-01,7
@@ -892,7 +931,7 @@ BMW,X5 xDrive 40e,BMW X5 xDrive 40e,PHEV,2015,DEC,2015-12-01,607
 Porsche,Panamera S-E,Porsche Panamera S-E,PHEV,2015,DEC,2015-12-01,16
 Tesla,Model X,Tesla Model X,BEV,2015,DEC,2015-12-01,199
 Porsche,918 Spyder,Porsche 918 Spyder,PHEV,2015,DEC,2015-12-01,0
-Hyundai,Sonata PHV,Hyundai Sonata PHV,PHEV,2015,DEC,2015-12-01,145
+Hyundai,Sonata PHEV,Hyundai Sonata PHEV,PHEV,2015,DEC,2015-12-01,145
 Mercedes,S550 PHV,Mercedes S550 PHV,PHEV,2015,DEC,2015-12-01,35
 Mitsubishi,i-MiEV,Mitsubishi i-MiEV,BEV,2015,DEC,2015-12-01,9
 Volvo,XC90,Volvo XC90,PHEV,2015,DEC,2015-12-01,74
@@ -910,7 +949,7 @@ BMW,X5 xDrive 40e,BMW X5 xDrive 40e,PHEV,2016,JAN,2016-01-01,181
 Fiat,500e,Fiat 500e,BEV,2016,JAN,2016-01-01,305
 Audi,A3 Sportback e-tron,Audi A3 Sportback e-tron,PHEV,2016,JAN,2016-01-01,327
 VW,e-Golf,VW e-Golf,BEV,2016,JAN,2016-01-01,328
-Hyundai,Sonata PHV,Hyundai Sonata PHV,PHEV,2016,JAN,2016-01-01,175
+Hyundai,Sonata PHEV,Hyundai Sonata PHEV,PHEV,2016,JAN,2016-01-01,175
 Chevrolet,Spark EV,Chevrolet Spark EV,BEV,2016,JAN,2016-01-01,139
 Toyota,Prius Prime,Toyota Prius Prime,PHEV,2016,JAN,2016-01-01,0
 Porsche,Cayenne S-E,Porsche Cayenne S-E,PHEV,2016,JAN,2016-01-01,146
@@ -942,7 +981,7 @@ BMW,X5 xDrive 40e,BMW X5 xDrive 40e,PHEV,2016,FEB,2016-02-01,345
 Fiat,500e,Fiat 500e,BEV,2016,FEB,2016-02-01,210
 Audi,A3 Sportback e-tron,Audi A3 Sportback e-tron,PHEV,2016,FEB,2016-02-01,243
 VW,e-Golf,VW e-Golf,BEV,2016,FEB,2016-02-01,198
-Hyundai,Sonata PHV,Hyundai Sonata PHV,PHEV,2016,FEB,2016-02-01,200
+Hyundai,Sonata PHEV,Hyundai Sonata PHEV,PHEV,2016,FEB,2016-02-01,200
 Chevrolet,Spark EV,Chevrolet Spark EV,BEV,2016,FEB,2016-02-01,216
 Toyota,Prius Prime,Toyota Prius Prime,PHEV,2016,FEB,2016-02-01,0
 Porsche,Cayenne S-E,Porsche Cayenne S-E,PHEV,2016,FEB,2016-02-01,172
@@ -974,7 +1013,7 @@ BMW,X5 xDrive 40e,BMW X5 xDrive 40e,PHEV,2016,MAR,2016-03-01,313
 Fiat,500e,Fiat 500e,BEV,2016,MAR,2016-03-01,455
 Audi,A3 Sportback e-tron,Audi A3 Sportback e-tron,PHEV,2016,MAR,2016-03-01,332
 VW,e-Golf,VW e-Golf,BEV,2016,MAR,2016-03-01,86
-Hyundai,Sonata PHV,Hyundai Sonata PHV,PHEV,2016,MAR,2016-03-01,275
+Hyundai,Sonata PHEV,Hyundai Sonata PHEV,PHEV,2016,MAR,2016-03-01,275
 Chevrolet,Spark EV,Chevrolet Spark EV,BEV,2016,MAR,2016-03-01,252
 Toyota,Prius Prime,Toyota Prius Prime,PHEV,2016,MAR,2016-03-01,0
 Porsche,Cayenne S-E,Porsche Cayenne S-E,PHEV,2016,MAR,2016-03-01,244
@@ -1006,7 +1045,7 @@ BMW,X5 xDrive 40e,BMW X5 xDrive 40e,PHEV,2016,APR,2016-04-01,655
 Fiat,500e,Fiat 500e,BEV,2016,APR,2016-04-01,395
 Audi,A3 Sportback e-tron,Audi A3 Sportback e-tron,PHEV,2016,APR,2016-04-01,326
 VW,e-Golf,VW e-Golf,BEV,2016,APR,2016-04-01,326
-Hyundai,Sonata PHV,Hyundai Sonata PHV,PHEV,2016,APR,2016-04-01,250
+Hyundai,Sonata PHEV,Hyundai Sonata PHEV,PHEV,2016,APR,2016-04-01,250
 Chevrolet,Spark EV,Chevrolet Spark EV,BEV,2016,APR,2016-04-01,419
 Toyota,Prius Prime,Toyota Prius Prime,PHEV,2016,APR,2016-04-01,0
 Porsche,Cayenne S-E,Porsche Cayenne S-E,PHEV,2016,APR,2016-04-01,237
@@ -1038,7 +1077,7 @@ BMW,X5 xDrive 40e,BMW X5 xDrive 40e,PHEV,2016,MAY,2016-05-01,500
 Fiat,500e,Fiat 500e,BEV,2016,MAY,2016-05-01,425
 Audi,A3 Sportback e-tron,Audi A3 Sportback e-tron,PHEV,2016,MAY,2016-05-01,361
 VW,e-Golf,VW e-Golf,BEV,2016,MAY,2016-05-01,269
-Hyundai,Sonata PHV,Hyundai Sonata PHV,PHEV,2016,MAY,2016-05-01,235
+Hyundai,Sonata PHEV,Hyundai Sonata PHEV,PHEV,2016,MAY,2016-05-01,235
 Chevrolet,Spark EV,Chevrolet Spark EV,BEV,2016,MAY,2016-05-01,394
 Toyota,Prius Prime,Toyota Prius Prime,PHEV,2016,MAY,2016-05-01,0
 Porsche,Cayenne S-E,Porsche Cayenne S-E,PHEV,2016,MAY,2016-05-01,191
@@ -1070,7 +1109,7 @@ BMW,X5 xDrive 40e,BMW X5 xDrive 40e,PHEV,2016,JUN,2016-06-01,583
 Fiat,500e,Fiat 500e,BEV,2016,JUN,2016-06-01,280
 Audi,A3 Sportback e-tron,Audi A3 Sportback e-tron,PHEV,2016,JUN,2016-06-01,353
 VW,e-Golf,VW e-Golf,BEV,2016,JUN,2016-06-01,248
-Hyundai,Sonata PHV,Hyundai Sonata PHV,PHEV,2016,JUN,2016-06-01,225
+Hyundai,Sonata PHEV,Hyundai Sonata PHEV,PHEV,2016,JUN,2016-06-01,225
 Chevrolet,Spark EV,Chevrolet Spark EV,BEV,2016,JUN,2016-06-01,359
 Toyota,Prius Prime,Toyota Prius Prime,PHEV,2016,JUN,2016-06-01,0
 Porsche,Cayenne S-E,Porsche Cayenne S-E,PHEV,2016,JUN,2016-06-01,176
@@ -1102,7 +1141,7 @@ BMW,X5 xDrive 40e,BMW X5 xDrive 40e,PHEV,2016,JUL,2016-07-01,649
 Fiat,500e,Fiat 500e,BEV,2016,JUL,2016-07-01,225
 Audi,A3 Sportback e-tron,Audi A3 Sportback e-tron,PHEV,2016,JUL,2016-07-01,349
 VW,e-Golf,VW e-Golf,BEV,2016,JUL,2016-07-01,344
-Hyundai,Sonata PHV,Hyundai Sonata PHV,PHEV,2016,JUL,2016-07-01,375
+Hyundai,Sonata PHEV,Hyundai Sonata PHEV,PHEV,2016,JUL,2016-07-01,375
 Chevrolet,Spark EV,Chevrolet Spark EV,BEV,2016,JUL,2016-07-01,333
 Toyota,Prius Prime,Toyota Prius Prime,PHEV,2016,JUL,2016-07-01,0
 Porsche,Cayenne S-E,Porsche Cayenne S-E,PHEV,2016,JUL,2016-07-01,148
@@ -1134,7 +1173,7 @@ BMW,X5 xDrive 40e,BMW X5 xDrive 40e,PHEV,2016,AUG,2016-08-01,876
 Fiat,500e,Fiat 500e,BEV,2016,AUG,2016-08-01,360
 Audi,A3 Sportback e-tron,Audi A3 Sportback e-tron,PHEV,2016,AUG,2016-08-01,346
 VW,e-Golf,VW e-Golf,BEV,2016,AUG,2016-08-01,454
-Hyundai,Sonata PHV,Hyundai Sonata PHV,PHEV,2016,AUG,2016-08-01,235
+Hyundai,Sonata PHEV,Hyundai Sonata PHEV,PHEV,2016,AUG,2016-08-01,235
 Chevrolet,Spark EV,Chevrolet Spark EV,BEV,2016,AUG,2016-08-01,292
 Toyota,Prius Prime,Toyota Prius Prime,PHEV,2016,AUG,2016-08-01,0
 Porsche,Cayenne S-E,Porsche Cayenne S-E,PHEV,2016,AUG,2016-08-01,197
@@ -1166,7 +1205,7 @@ BMW,X5 xDrive 40e,BMW X5 xDrive 40e,PHEV,2016,SEP,2016-09-01,482
 Fiat,500e,Fiat 500e,BEV,2016,SEP,2016-09-01,690
 Audi,A3 Sportback e-tron,Audi A3 Sportback e-tron,PHEV,2016,SEP,2016-09-01,312
 VW,e-Golf,VW e-Golf,BEV,2016,SEP,2016-09-01,529
-Hyundai,Sonata PHV,Hyundai Sonata PHV,PHEV,2016,SEP,2016-09-01,260
+Hyundai,Sonata PHEV,Hyundai Sonata PHEV,PHEV,2016,SEP,2016-09-01,260
 Chevrolet,Spark EV,Chevrolet Spark EV,BEV,2016,SEP,2016-09-01,315
 Toyota,Prius Prime,Toyota Prius Prime,PHEV,2016,SEP,2016-09-01,0
 Porsche,Cayenne S-E,Porsche Cayenne S-E,PHEV,2016,SEP,2016-09-01,131
@@ -1198,7 +1237,7 @@ BMW,X5 xDrive 40e,BMW X5 xDrive 40e,PHEV,2016,OCT,2016-10-01,406
 Fiat,500e,Fiat 500e,BEV,2016,OCT,2016-10-01,745
 Audi,A3 Sportback e-tron,Audi A3 Sportback e-tron,PHEV,2016,OCT,2016-10-01,348
 VW,e-Golf,VW e-Golf,BEV,2016,OCT,2016-10-01,407
-Hyundai,Sonata PHV,Hyundai Sonata PHV,PHEV,2016,OCT,2016-10-01,255
+Hyundai,Sonata PHEV,Hyundai Sonata PHEV,PHEV,2016,OCT,2016-10-01,255
 Chevrolet,Spark EV,Chevrolet Spark EV,BEV,2016,OCT,2016-10-01,260
 Toyota,Prius Prime,Toyota Prius Prime,PHEV,2016,OCT,2016-10-01,0
 Porsche,Cayenne S-E,Porsche Cayenne S-E,PHEV,2016,OCT,2016-10-01,138
@@ -1230,7 +1269,7 @@ BMW,X5 xDrive 40e,BMW X5 xDrive 40e,PHEV,2016,NOV,2016-11-01,436
 Fiat,500e,Fiat 500e,BEV,2016,NOV,2016-11-01,590
 Audi,A3 Sportback e-tron,Audi A3 Sportback e-tron,PHEV,2016,NOV,2016-11-01,394
 VW,e-Golf,VW e-Golf,BEV,2016,NOV,2016-11-01,305
-Hyundai,Sonata PHV,Hyundai Sonata PHV,PHEV,2016,NOV,2016-11-01,285
+Hyundai,Sonata PHEV,Hyundai Sonata PHEV,PHEV,2016,NOV,2016-11-01,285
 Chevrolet,Spark EV,Chevrolet Spark EV,BEV,2016,NOV,2016-11-01,39
 Toyota,Prius Prime,Toyota Prius Prime,PHEV,2016,NOV,2016-11-01,781
 Porsche,Cayenne S-E,Porsche Cayenne S-E,PHEV,2016,NOV,2016-11-01,179
@@ -1262,7 +1301,7 @@ BMW,X5 xDrive 40e,BMW X5 xDrive 40e,PHEV,2016,DEC,2016-12-01,569
 Fiat,500e,Fiat 500e,BEV,2016,DEC,2016-12-01,650
 Audi,A3 Sportback e-tron,Audi A3 Sportback e-tron,PHEV,2016,DEC,2016-12-01,589
 VW,e-Golf,VW e-Golf,BEV,2016,DEC,2016-12-01,443
-Hyundai,Sonata PHV,Hyundai Sonata PHV,PHEV,2016,DEC,2016-12-01,325
+Hyundai,Sonata PHEV,Hyundai Sonata PHEV,PHEV,2016,DEC,2016-12-01,325
 Chevrolet,Spark EV,Chevrolet Spark EV,BEV,2016,DEC,2016-12-01,17
 Toyota,Prius Prime,Toyota Prius Prime,PHEV,2016,DEC,2016-12-01,1641
 Porsche,Cayenne S-E,Porsche Cayenne S-E,PHEV,2016,DEC,2016-12-01,152
@@ -1293,7 +1332,7 @@ Ford,Fusion Energi,Ford Fusion Energi,PHEV,2017,JAN,2017-01-01,606
 Ford,C-Max Energi,Ford C-Max Energi,PHEV,2017,JAN,2017-01-01,473
 BMW,i3,BMW i3,PHEV,2017,JAN,2017-01-01,382
 Fiat,500e,Fiat 500e,BEV,2017,JAN,2017-01-01,752
-BMWX,5 xDrive 40e,BMWX 5 xDrive 40e,PHEV,2017,JAN,2017-01-01,262
+BMW,X5 xDrive 40e,BMW X5 xDrive 40e,PHEV,2017,JAN,2017-01-01,262
 Chrysler,Pacifica Hybrid,Chrysler Pacifica Hybrid,PHEV,2017,JAN,2017-01-01,12
 BMW,330e,BMW 330e,PHEV,2017,JAN,2017-01-01,129
 BMW,530e,BMW 530e,PHEV,2017,JAN,2017-01-01,0
@@ -1335,7 +1374,7 @@ Ford,Fusion Energi,Ford Fusion Energi,PHEV,2017,FEB,2017-02-01,837
 Ford,C-Max Energi,Ford C-Max Energi,PHEV,2017,FEB,2017-02-01,639
 BMW,i3,BMW i3,PHEV,2017,FEB,2017-02-01,318
 Fiat,500e,Fiat 500e,BEV,2017,FEB,2017-02-01,590
-BMWX,5 xDrive 40e,BMWX 5 xDrive 40e,PHEV,2017,FEB,2017-02-01,275
+BMW,X5 xDrive 40e,BMW X5 xDrive 40e,PHEV,2017,FEB,2017-02-01,275
 Chrysler,Pacifica Hybrid,Chrysler Pacifica Hybrid,PHEV,2017,FEB,2017-02-01,0
 BMW,330e,BMW 330e,PHEV,2017,FEB,2017-02-01,144
 BMW,530e,BMW 530e,PHEV,2017,FEB,2017-02-01,0
@@ -1377,7 +1416,7 @@ Ford,Fusion Energi,Ford Fusion Energi,PHEV,2017,MAR,2017-03-01,1002
 Ford,C-Max Energi,Ford C-Max Energi,PHEV,2017,MAR,2017-03-01,662
 BMW,i3,BMW i3,PHEV,2017,MAR,2017-03-01,703
 Fiat,500e,Fiat 500e,BEV,2017,MAR,2017-03-01,785
-BMWX,5 xDrive 40e,BMWX 5 xDrive 40e,PHEV,2017,MAR,2017-03-01,397
+BMW,X5 xDrive 40e,BMW X5 xDrive 40e,PHEV,2017,MAR,2017-03-01,397
 Chrysler,Pacifica Hybrid,Chrysler Pacifica Hybrid,PHEV,2017,MAR,2017-03-01,0
 BMW,330e,BMW 330e,PHEV,2017,MAR,2017-03-01,365
 BMW,530e,BMW 530e,PHEV,2017,MAR,2017-03-01,0
@@ -1419,7 +1458,7 @@ Ford,Fusion Energi,Ford Fusion Energi,PHEV,2017,APR,2017-04-01,905
 Ford,C-Max Energi,Ford C-Max Energi,PHEV,2017,APR,2017-04-01,720
 BMW,i3,BMW i3,PHEV,2017,APR,2017-04-01,516
 Fiat,500e,Fiat 500e,BEV,2017,APR,2017-04-01,541
-BMWX,5 xDrive 40e,BMWX 5 xDrive 40e,PHEV,2017,APR,2017-04-01,291
+BMW,X5 xDrive 40e,BMW X5 xDrive 40e,PHEV,2017,APR,2017-04-01,291
 Chrysler,Pacifica Hybrid,Chrysler Pacifica Hybrid,PHEV,2017,APR,2017-04-01,335
 BMW,330e,BMW 330e,PHEV,2017,APR,2017-04-01,260
 BMW,530e,BMW 530e,PHEV,2017,APR,2017-04-01,13
@@ -1461,7 +1500,7 @@ Ford,Fusion Energi,Ford Fusion Energi,PHEV,2017,MAY,2017-05-01,1000
 Ford,C-Max Energi,Ford C-Max Energi,PHEV,2017,MAY,2017-05-01,950
 BMW,i3,BMW i3,PHEV,2017,MAY,2017-05-01,506
 Fiat,500e,Fiat 500e,BEV,2017,MAY,2017-05-01,473
-BMWX,5 xDrive 40e,BMWX 5 xDrive 40e,PHEV,2017,MAY,2017-05-01,433
+BMW,X5 xDrive 40e,BMW X5 xDrive 40e,PHEV,2017,MAY,2017-05-01,433
 Chrysler,Pacifica Hybrid,Chrysler Pacifica Hybrid,PHEV,2017,MAY,2017-05-01,705
 BMW,330e,BMW 330e,PHEV,2017,MAY,2017-05-01,475
 BMW,530e,BMW 530e,PHEV,2017,MAY,2017-05-01,147
@@ -1503,7 +1542,7 @@ Ford,Fusion Energi,Ford Fusion Energi,PHEV,2017,JUN,2017-06-01,707
 Ford,C-Max Energi,Ford C-Max Energi,PHEV,2017,JUN,2017-06-01,936
 BMW,i3,BMW i3,PHEV,2017,JUN,2017-06-01,567
 Fiat,500e,Fiat 500e,BEV,2017,JUN,2017-06-01,359
-BMWX,5 xDrive 40e,BMWX 5 xDrive 40e,PHEV,2017,JUN,2017-06-01,488
+BMW,X5 xDrive 40e,BMW X5 xDrive 40e,PHEV,2017,JUN,2017-06-01,488
 Chrysler,Pacifica Hybrid,Chrysler Pacifica Hybrid,PHEV,2017,JUN,2017-06-01,355
 BMW,330e,BMW 330e,PHEV,2017,JUN,2017-06-01,496
 BMW,530e,BMW 530e,PHEV,2017,JUN,2017-06-01,239
@@ -1545,7 +1584,7 @@ Ford,Fusion Energi,Ford Fusion Energi,PHEV,2017,JUL,2017-07-01,703
 Ford,C-Max Energi,Ford C-Max Energi,PHEV,2017,JUL,2017-07-01,844
 BMW,i3,BMW i3,PHEV,2017,JUL,2017-07-01,601
 Fiat,500e,Fiat 500e,BEV,2017,JUL,2017-07-01,395
-BMWX,5 xDrive 40e,BMWX 5 xDrive 40e,PHEV,2017,JUL,2017-07-01,463
+BMW,X5 xDrive 40e,BMW X5 xDrive 40e,PHEV,2017,JUL,2017-07-01,463
 Chrysler,Pacifica Hybrid,Chrysler Pacifica Hybrid,PHEV,2017,JUL,2017-07-01,125
 BMW,330e,BMW 330e,PHEV,2017,JUL,2017-07-01,387
 BMW,530e,BMW 530e,PHEV,2017,JUL,2017-07-01,343
@@ -1587,7 +1626,7 @@ Ford,Fusion Energi,Ford Fusion Energi,PHEV,2017,AUG,2017-08-01,762
 Ford,C-Max Energi,Ford C-Max Energi,PHEV,2017,AUG,2017-08-01,705
 BMW,i3,BMW i3,PHEV,2017,AUG,2017-08-01,504
 Fiat,500e,Fiat 500e,BEV,2017,AUG,2017-08-01,290
-BMWX,5 xDrive 40e,BMWX 5 xDrive 40e,PHEV,2017,AUG,2017-08-01,317
+BMW,X5 xDrive 40e,BMW X5 xDrive 40e,PHEV,2017,AUG,2017-08-01,317
 Chrysler,Pacifica Hybrid,Chrysler Pacifica Hybrid,PHEV,2017,AUG,2017-08-01,425
 BMW,330e,BMW 330e,PHEV,2017,AUG,2017-08-01,409
 BMW,530e,BMW 530e,PHEV,2017,AUG,2017-08-01,345
@@ -1629,7 +1668,7 @@ Ford,Fusion Energi,Ford Fusion Energi,PHEV,2017,SEP,2017-09-01,763
 Ford,C-Max Energi,Ford C-Max Energi,PHEV,2017,SEP,2017-09-01,683
 BMW,i3,BMW i3,PHEV,2017,SEP,2017-09-01,538
 Fiat,500e,Fiat 500e,BEV,2017,SEP,2017-09-01,285
-BMWX,5 xDrive 40e,BMWX 5 xDrive 40e,PHEV,2017,SEP,2017-09-01,333
+BMW,X5 xDrive 40e,BMW X5 xDrive 40e,PHEV,2017,SEP,2017-09-01,333
 Chrysler,Pacifica Hybrid,Chrysler Pacifica Hybrid,PHEV,2017,SEP,2017-09-01,475
 BMW,330e,BMW 330e,PHEV,2017,SEP,2017-09-01,329
 BMW,530e,BMW 530e,PHEV,2017,SEP,2017-09-01,511
@@ -1671,7 +1710,7 @@ Ford,Fusion Energi,Ford Fusion Energi,PHEV,2017,OCT,2017-10-01,741
 Ford,C-Max Energi,Ford C-Max Energi,PHEV,2017,OCT,2017-10-01,569
 BMW,i3,BMW i3,PHEV,2017,OCT,2017-10-01,686
 Fiat,500e,Fiat 500e,BEV,2017,OCT,2017-10-01,310
-BMWX,5 xDrive 40e,BMWX 5 xDrive 40e,PHEV,2017,OCT,2017-10-01,329
+BMW,X5 xDrive 40e,BMW X5 xDrive 40e,PHEV,2017,OCT,2017-10-01,329
 Chrysler,Pacifica Hybrid,Chrysler Pacifica Hybrid,PHEV,2017,OCT,2017-10-01,875
 BMW,330e,BMW 330e,PHEV,2017,OCT,2017-10-01,307
 BMW,530e,BMW 530e,PHEV,2017,OCT,2017-10-01,596
@@ -1713,7 +1752,7 @@ Ford,Fusion Energi,Ford Fusion Energi,PHEV,2017,NOV,2017-11-01,731
 Ford,C-Max Energi,Ford C-Max Energi,PHEV,2017,NOV,2017-11-01,523
 BMW,i3,BMW i3,PHEV,2017,NOV,2017-11-01,283
 Fiat,500e,Fiat 500e,BEV,2017,NOV,2017-11-01,215
-BMWX,5 xDrive 40e,BMWX 5 xDrive 40e,PHEV,2017,NOV,2017-11-01,929
+BMW,X5 xDrive 40e,BMW X5 xDrive 40e,PHEV,2017,NOV,2017-11-01,929
 Chrysler,Pacifica Hybrid,Chrysler Pacifica Hybrid,PHEV,2017,NOV,2017-11-01,570
 BMW,330e,BMW 330e,PHEV,2017,NOV,2017-11-01,477
 BMW,530e,BMW 530e,PHEV,2017,NOV,2017-11-01,872
@@ -1755,7 +1794,7 @@ Ford,Fusion Energi,Ford Fusion Energi,PHEV,2017,DEC,2017-12-01,875
 Ford,C-Max Energi,Ford C-Max Energi,PHEV,2017,DEC,2017-12-01,436
 BMW,i3,BMW i3,PHEV,2017,DEC,2017-12-01,672
 Fiat,500e,Fiat 500e,BEV,2017,DEC,2017-12-01,385
-BMWX,5 xDrive 40e,BMWX 5 xDrive 40e,PHEV,2017,DEC,2017-12-01,832
+BMW,X5 xDrive 40e,BMW X5 xDrive 40e,PHEV,2017,DEC,2017-12-01,832
 Chrysler,Pacifica Hybrid,Chrysler Pacifica Hybrid,PHEV,2017,DEC,2017-12-01,720
 BMW,330e,BMW 330e,PHEV,2017,DEC,2017-12-01,363
 BMW,530e,BMW 530e,PHEV,2017,DEC,2017-12-01,706
@@ -1799,7 +1838,7 @@ BMW,530e,BMW 530e,PHEV,2018,JAN,2018-01-01,224
 Ford,Fusion Energi,Ford Fusion Energi,PHEV,2018,JAN,2018-01-01,640
 Chrysler,Pacifica Hybrid,Chrysler Pacifica Hybrid,PHEV,2018,JAN,2018-01-01,375
 BMW,i3,BMW i3,PHEV,2018,JAN,2018-01-01,382
-BMWX,5 xDrive 40e,BMWX 5 xDrive 40e,PHEV,2018,JAN,2018-01-01,261
+BMW,X5 xDrive 40e,BMW X5 xDrive 40e,PHEV,2018,JAN,2018-01-01,261
 Mitsubishi,Outlander PHEV,Mitsubishi Outlander PHEV,PHEV,2018,JAN,2018-01-01,300
 Kia,Niro PHEV,Kia Niro PHEV,PHEV,2018,JAN,2018-01-01,155
 Audi,A3 Sportback e-tron,Audi A3 Sportback e-tron,PHEV,2018,JAN,2018-01-01,145
@@ -1842,7 +1881,7 @@ BMW,530e,BMW 530e,PHEV,2018,FEB,2018-02-01,413
 Ford,Fusion Energi,Ford Fusion Energi,PHEV,2018,FEB,2018-02-01,794
 Chrysler,Pacifica Hybrid,Chrysler Pacifica Hybrid,PHEV,2018,FEB,2018-02-01,450
 BMW,i3,BMW i3,PHEV,2018,FEB,2018-02-01,623
-BMWX,5 xDrive 40e,BMWX 5 xDrive 40e,PHEV,2018,FEB,2018-02-01,596
+BMW,X5 xDrive 40e,BMW X5 xDrive 40e,PHEV,2018,FEB,2018-02-01,596
 Mitsubishi,Outlander PHEV,Mitsubishi Outlander PHEV,PHEV,2018,FEB,2018-02-01,323
 Kia,Niro PHEV,Kia Niro PHEV,PHEV,2018,FEB,2018-02-01,246
 Audi,A3 Sportback e-tron,Audi A3 Sportback e-tron,PHEV,2018,FEB,2018-02-01,199
@@ -1885,7 +1924,7 @@ BMW,530e,BMW 530e,PHEV,2018,MAR,2018-03-01,689
 Ford,Fusion Energi,Ford Fusion Energi,PHEV,2018,MAR,2018-03-01,782
 Chrysler,Pacifica Hybrid,Chrysler Pacifica Hybrid,PHEV,2018,MAR,2018-03-01,480
 BMW,i3,BMW i3,PHEV,2018,MAR,2018-03-01,992
-BMWX,5 xDrive 40e,BMWX 5 xDrive 40e,PHEV,2018,MAR,2018-03-01,627
+BMW,X5 xDrive 40e,BMW X5 xDrive 40e,PHEV,2018,MAR,2018-03-01,627
 Mitsubishi,Outlander PHEV,Mitsubishi Outlander PHEV,PHEV,2018,MAR,2018-03-01,373
 Kia,Niro PHEV,Kia Niro PHEV,PHEV,2018,MAR,2018-03-01,227
 Audi,A3 Sportback e-tron,Audi A3 Sportback e-tron,PHEV,2018,MAR,2018-03-01,214
@@ -1928,7 +1967,7 @@ BMW,530e,BMW 530e,PHEV,2018,APR,2018-04-01,518
 Ford,Fusion Energi,Ford Fusion Energi,PHEV,2018,APR,2018-04-01,742
 Chrysler,Pacifica Hybrid,Chrysler Pacifica Hybrid,PHEV,2018,APR,2018-04-01,425
 BMW,i3,BMW i3,PHEV,2018,APR,2018-04-01,503
-BMWX,5 xDrive 40e,BMWX 5 xDrive 40e,PHEV,2018,APR,2018-04-01,563
+BMW,X5 xDrive 40e,BMW X5 xDrive 40e,PHEV,2018,APR,2018-04-01,563
 Mitsubishi,Outlander PHEV,Mitsubishi Outlander PHEV,PHEV,2018,APR,2018-04-01,273
 Kia,Niro PHEV,Kia Niro PHEV,PHEV,2018,APR,2018-04-01,120
 Audi,A3 Sportback e-tron,Audi A3 Sportback e-tron,PHEV,2018,APR,2018-04-01,189
@@ -1971,7 +2010,7 @@ BMW,530e,BMW 530e,PHEV,2018,MAY,2018-05-01,729
 Ford,Fusion Energi,Ford Fusion Energi,PHEV,2018,MAY,2018-05-01,740
 Chrysler,Pacifica Hybrid,Chrysler Pacifica Hybrid,PHEV,2018,MAY,2018-05-01,650
 BMW,i3,BMW i3,PHEV,2018,MAY,2018-05-01,424
-BMWX,5 xDrive 40e,BMWX 5 xDrive 40e,PHEV,2018,MAY,2018-05-01,499
+BMW,X5 xDrive 40e,BMW X5 xDrive 40e,PHEV,2018,MAY,2018-05-01,499
 Mitsubishi,Outlander PHEV,Mitsubishi Outlander PHEV,PHEV,2018,MAY,2018-05-01,297
 Kia,Niro PHEV,Kia Niro PHEV,PHEV,2018,MAY,2018-05-01,218
 Audi,A3 Sportback e-tron,Audi A3 Sportback e-tron,PHEV,2018,MAY,2018-05-01,267
@@ -2014,7 +2053,7 @@ BMW,530e,BMW 530e,PHEV,2018,JUN,2018-06-01,942
 Ford,Fusion Energi,Ford Fusion Energi,PHEV,2018,JUN,2018-06-01,604
 Chrysler,Pacifica Hybrid,Chrysler Pacifica Hybrid,PHEV,2018,JUN,2018-06-01,710
 BMW,i3,BMW i3,PHEV,2018,JUN,2018-06-01,580
-BMWX,5 xDrive 40e,BMWX 5 xDrive 40e,PHEV,2018,JUN,2018-06-01,321
+BMW,X5 xDrive 40e,BMW X5 xDrive 40e,PHEV,2018,JUN,2018-06-01,321
 Mitsubishi,Outlander PHEV,Mitsubishi Outlander PHEV,PHEV,2018,JUN,2018-06-01,390
 Kia,Niro PHEV,Kia Niro PHEV,PHEV,2018,JUN,2018-06-01,281
 Audi,A3 Sportback e-tron,Audi A3 Sportback e-tron,PHEV,2018,JUN,2018-06-01,238
@@ -2057,7 +2096,7 @@ BMW,530e,BMW 530e,PHEV,2018,JUL,2018-07-01,536
 Ford,Fusion Energi,Ford Fusion Energi,PHEV,2018,JUL,2018-07-01,522
 Chrysler,Pacifica Hybrid,Chrysler Pacifica Hybrid,PHEV,2018,JUL,2018-07-01,450
 BMW,i3,BMW i3,PHEV,2018,JUL,2018-07-01,464
-BMWX,5 xDrive 40e,BMWX 5 xDrive 40e,PHEV,2018,JUL,2018-07-01,431
+BMW,X5 xDrive 40e,BMW X5 xDrive 40e,PHEV,2018,JUL,2018-07-01,431
 Mitsubishi,Outlander PHEV,Mitsubishi Outlander PHEV,PHEV,2018,JUL,2018-07-01,350
 Kia,Niro PHEV,Kia Niro PHEV,PHEV,2018,JUL,2018-07-01,225
 Audi,A3 Sportback e-tron,Audi A3 Sportback e-tron,PHEV,2018,JUL,2018-07-01,220
@@ -2100,7 +2139,7 @@ BMW,530e,BMW 530e,PHEV,2018,AUG,2018-08-01,749
 Ford,Fusion Energi,Ford Fusion Energi,PHEV,2018,AUG,2018-08-01,396
 Chrysler,Pacifica Hybrid,Chrysler Pacifica Hybrid,PHEV,2018,AUG,2018-08-01,654
 BMW,i3,BMW i3,PHEV,2018,AUG,2018-08-01,418
-BMWX,5 xDrive 40e,BMWX 5 xDrive 40e,PHEV,2018,AUG,2018-08-01,264
+BMW,X5 xDrive 40e,BMW X5 xDrive 40e,PHEV,2018,AUG,2018-08-01,264
 Mitsubishi,Outlander PHEV,Mitsubishi Outlander PHEV,PHEV,2018,AUG,2018-08-01,366
 Kia,Niro PHEV,Kia Niro PHEV,PHEV,2018,AUG,2018-08-01,346
 Audi,A3 Sportback e-tron,Audi A3 Sportback e-tron,PHEV,2018,AUG,2018-08-01,240
@@ -2143,7 +2182,7 @@ BMW,530e,BMW 530e,PHEV,2018,SEP,2018-09-01,756
 Ford,Fusion Energi,Ford Fusion Energi,PHEV,2018,SEP,2018-09-01,480
 Chrysler,Pacifica Hybrid,Chrysler Pacifica Hybrid,PHEV,2018,SEP,2018-09-01,637
 BMW,i3,BMW i3,PHEV,2018,SEP,2018-09-01,461
-BMWX,5 xDrive 40e,BMWX 5 xDrive 40e,PHEV,2018,SEP,2018-09-01,225
+BMW,X5 xDrive 40e,BMW X5 xDrive 40e,PHEV,2018,SEP,2018-09-01,225
 Mitsubishi,Outlander PHEV,Mitsubishi Outlander PHEV,PHEV,2018,SEP,2018-09-01,378
 Kia,Niro PHEV,Kia Niro PHEV,PHEV,2018,SEP,2018-09-01,313
 Audi,A3 Sportback e-tron,Audi A3 Sportback e-tron,PHEV,2018,SEP,2018-09-01,230
@@ -2186,7 +2225,7 @@ BMW,530e,BMW 530e,PHEV,2018,OCT,2018-10-01,733
 Ford,Fusion Energi,Ford Fusion Energi,PHEV,2018,OCT,2018-10-01,453
 Chrysler,Pacifica Hybrid,Chrysler Pacifica Hybrid,PHEV,2018,OCT,2018-10-01,623
 BMW,i3,BMW i3,PHEV,2018,OCT,2018-10-01,424
-BMWX,5 xDrive 40e,BMWX 5 xDrive 40e,PHEV,2018,OCT,2018-10-01,224
+BMW,X5 xDrive 40e,BMW X5 xDrive 40e,PHEV,2018,OCT,2018-10-01,224
 Mitsubishi,Outlander PHEV,Mitsubishi Outlander PHEV,PHEV,2018,OCT,2018-10-01,309
 Kia,Niro PHEV,Kia Niro PHEV,PHEV,2018,OCT,2018-10-01,323
 Audi,A3 Sportback e-tron,Audi A3 Sportback e-tron,PHEV,2018,OCT,2018-10-01,210
@@ -2229,7 +2268,7 @@ BMW,530e,BMW 530e,PHEV,2018,NOV,2018-11-01,1012
 Ford,Fusion Energi,Ford Fusion Energi,PHEV,2018,NOV,2018-11-01,1131
 Chrysler,Pacifica Hybrid,Chrysler Pacifica Hybrid,PHEV,2018,NOV,2018-11-01,895
 BMW,i3,BMW i3,PHEV,2018,NOV,2018-11-01,490
-BMWX,5 xDrive 40e,BMWX 5 xDrive 40e,PHEV,2018,NOV,2018-11-01,213
+BMW,X5 xDrive 40e,BMW X5 xDrive 40e,PHEV,2018,NOV,2018-11-01,213
 Mitsubishi,Outlander PHEV,Mitsubishi Outlander PHEV,PHEV,2018,NOV,2018-11-01,376
 Kia,Niro PHEV,Kia Niro PHEV,PHEV,2018,NOV,2018-11-01,619
 Audi,A3 Sportback e-tron,Audi A3 Sportback e-tron,PHEV,2018,NOV,2018-11-01,180

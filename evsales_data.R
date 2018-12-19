@@ -3,38 +3,45 @@ library(tidyverse)
 library(tesseract)
 library(lubridate)
 
-# example of tesseract package usage
-data_2010_raw <- tesseract::ocr_data(image = "2010-2011_sales.png") %>%
-  select(word) %>%
-  mutate(
-    word = as.character(word),
-    word = str_remove(word, ","),
-    word = str_to_upper(word)
-  )
-
-# to convert date, use ymd(, truncated = 1)
-data_2010 <- data_2010_raw[[1]] %>%
-  t() %>%
-  matrix(nrow = 4, ncol = 13) %>%
-  t() %>%
-  as.tibble() %>%
-  rename(
-    Month = V1,
-    "Chevrolet Volt" = V2,
-    "Nissan Leaf" = V3,
-    "Mitsubishi iMiEV" = V4
-  ) %>%
-  mutate(
-    Year = c(2010, rep(2011, 12)),
-    Date = ymd(paste(Year, Month, sep = "-"), truncated = 1)
-  ) %>%
-  gather(key = Model, value = Sales, 2:4) %>%
-  select(Model, Month, Sales, Year, Date) %>%
-  mutate(Sales = as.integer(Sales))
+# Extract data from image (experimental)
+# # example of tesseract package usage
+# data_2010_image <- tesseract::ocr_data(image = "2010-2011_sales.png") %>%
+#   select(word) %>%
+#   mutate(
+#     word = as.character(word),
+#     word = str_remove(word, ","),
+#     word = str_to_upper(word)
+#   )
+# 
+# # to convert date, use ymd(, truncated = 1)
+# data_2010 <- data_2010_image[[1]] %>%
+#   t() %>%
+#   matrix(nrow = 4, ncol = 13) %>%
+#   t() %>%
+#   as.tibble() %>%
+#   rename(
+#     Month = V1,
+#     "Chevrolet Volt" = V2,
+#     "Nissan Leaf" = V3,
+#     "Mitsubishi iMiEV" = V4
+#   ) %>%
+#   mutate(
+#     Year = c(2010, rep(2011, 12)),
+#     Date = ymd(paste(Year, Month, sep = "-"), truncated = 1)
+#   ) %>%
+#   gather(key = Model, value = Sales, 2:4) %>%
+#   select(Model, Month, Sales, Year, Date) %>%
+#   mutate(Sales = as.integer(Sales))
 
 str(data_2010)
-str(data_2012)
 
+data_2010 <- read_csv("sales_2010.csv") %>%
+  gather(key = Model, value = Sales, 3:5) %>%
+  mutate(
+    Date = ymd(paste(Year, Month, sep = "-"), truncated = 1),
+    Year = as.numeric(Year)
+  ) %>%
+  select(Model, Month, Sales, Year, Date)
 
 # collect data from csvs
 data_2012 <- read_csv("sales_2012.csv") %>%
@@ -83,6 +90,7 @@ data_2018 <- read_csv("sales_2018.csv") %>%
 
 # combine data
 ev_data_raw_combined <- bind_rows(list(
+  data_2010,
   data_2012,
   data_2013,
   data_2014,
@@ -93,42 +101,48 @@ ev_data_raw_combined <- bind_rows(list(
 ))
 
 
+# Find models in the dataset
+EV_models_before <- unique(ev_data$Model) %>% as.tibble()
+
 # homogenize model names
 ev_data_homogenized_model_names <- ev_data_raw_combined %>% mutate(
   Model = ifelse(Model == "Audi A3 Sprtbk e-tron",
-    "Audi A3 Sportback e-tron", Model
+                 "Audi A3 Sportback e-tron", Model
   ),
-  Model = ifelse(Model == "BMWX5 xDrive 40e",
-    "BMWX 5 xDrive 40e", Model
+  Model = ifelse(Model == "BMWX5 xDrive 40e" | Model == "BMWX 5 xDrive 40e" | Model == "BMW x5 xDrive 40e",
+                 "BMW X5 xDrive 40e", Model
   ),
   Model = ifelse(Model == "BMW i3 (BEV + REx)",
-    "BMW i3", Model
+                 "BMW i3", Model
   ),
   Model = ifelse(Model == "Porsche Panamera E-Hybrid",
-    "Porsche Panamera S-E", Model
+                 "Porsche Panamera S-E", Model
   ),
   Model = ifelse(Model == "Honda fit EV",
-    "Honda Fit EV", Model
+                 "Honda Fit EV", Model
+  ),
+  Model = ifelse(Model == "Nissan Leaf",
+                 "Nissan LEAF", Model
+  ),
+  Model = ifelse(Model == "Hyundai Sonata PHV",
+                 "Hyundai Sonata PHEV", Model
+  ),
+  Model = ifelse(Model == "Mitsubishi iMiEV",
+                 "Mitsubishi i-MiEV", Model
   )
 )
 
-# Find which models are hybrid and which are battery electric
-EV_models <- unique(ev_data$Model) %>% as.tibble()
+EV_models_after <- tibble(Model = unique(ev_data_homogenized_model_names$Model) )
 
-# create dataframe of models and their fuel source
+# create dataframe of models and their fuel source, homogenize model names.
 fuel <- read_csv("fuel.csv") %>% mutate(
   Fuel = ifelse(Fuel == 1, "BEV", "PHEV"),
-  Model = str_replace(Model, pattern = "\\*", replacement = ""),
   Model = str_trim(string = Model, side = c("right"))
 )
 
-# check if any model is missing fuel type
-#missing_fuel <- ev_data %>% anti_join(y = fuel, by = "Model") # should be empty
+# Test if all models have appropriate fuel value
+test_fuels_accounted <- anti_join(EV_models_after, fuel, by = "Model")
 
-# export csv of models missing fuel
-# other_models <- unique(other_fuels$Model) %>%
-#   as.tibble() %>%
-#   write_csv(path = file.path(getwd(), "remaining_fuel.csv"))
 
 # add fuel type, and brand/model name columns
 ev_data <- ev_data_homogenized_model_names %>%
@@ -138,8 +152,10 @@ ev_data <- ev_data_homogenized_model_names %>%
     Brand = stringr::word(Model, sep = " "),
     Model = stringr::word(Name, 2, -1, sep = " ")
   ) %>%
-  select(Brand, Model, Name, Fuel, Year, Month, Date, Sales )
+  select(Brand, Model, Name, Fuel, Year, Month, Date, Sales)
 
+# check if any model is missing fuel type
+missing_fuel <- unique(ev_data$Fuel) # should only contain "PHEV" and "EV"
 
 evsales_path <- getwd()
 
